@@ -3,53 +3,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Site - Título</title>
+    <meta name="description" content="Biblioteca colaborativa sobre personalidade, tipologia e autoconhecimento">
+    <meta name="keywords" content="personalidade, tipologia, autoconhecimento, enneagram, psicologia">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Colmeia - Conheça a si. Entenda o outro.">
+    <meta property="og:description" content="Sua biblioteca completa sobre personalidade e autoconhecimento">
+    
+    <title>Colmeia - Conheça a si. Entenda o outro. Transforme o mundo.</title>
+    
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header/Nav -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="logo"> SeuLogo</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#conteudos">Conteúdos</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
+    <!-- Skip to content para acessibilidade -->
+    <a href="#main-content" class="skip-link">Pular para conteúdo principal</a>
+
+    <!-- Header com navegação -->
+    <header class="header" role="banner">
+        <div class="container header-container">
+            <a href="/" class="logo" aria-label="Colmeia - Página inicial">
+                <i class="fas fa-bee" aria-hidden="true"></i>
+                <span class="logo-text">Colmeia</span>
+            </a>
+            
+            <nav class="navbar" role="navigation" aria-label="Navegação principal">
+                <ul class="nav-list">
+                    <li><a href="#inicio" class="nav-link active">Início</a></li>
+                    <li class="dropdown">
+                        <button class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                            Explorar <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#tipologias">Tipologias</a></li>
+                            <li><a href="#artigos">Artigos</a></li>
+                            <li><a href="#testes">Testes</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#biblioteca" class="nav-link">Biblioteca</a></li>
+                    <li><a href="#artigos" class="nav-link">Artigos</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+                
+                <div class="header-actions">
+                    <button class="icon-btn" aria-label="Favoritos">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                    </button>
+                    <button class="icon-btn" aria-label="Perfil">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                    </button>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Abrir menu mobile" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Conheça a si.<br>Entenda o outro.<br>Transforme o mundo.</h1>
-            <p>Sua descrição aqui</p>
-            <button class="btn-primary">Explorar Conteúdos</button>
-        </div>
-        <div class="hero-image">
-            <!-- SVG ou imagem decorativa -->
-        </div>
-    </section>
-
-    <!-- Explore por Tema -->
-    <section class="topics">
-        <h2>Explore por tema</h2>
-        <div class="topics-grid">
-            <div class="topic-card">
-                <div class="icon"></div>
-                <h3>Tópico 1</h3>
-                <p>Descrição breve</p>
+    <!-- Barra de pesquisa flutuante -->
+    <div class="search-bar-container">
+        <div class="container">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                <input 
+                    type="search" 
+                    placeholder="Buscar tipologias, artigos e documentos..." 
+                    class="search-input"
+                    aria-label="Buscar conteúdo"
+                >
+                <button class="search-btn" aria-label="Buscar">
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
             </div>
-            <!-- Repita para mais cards -->
         </div>
-    </section>
+    </div>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        <span class="hero-line line-1">Conheça a si.</span>
+                        <span class="hero-line line-2">Entenda o outro.</span>
+                        <span class="hero-line line-3">Transforme o mundo.</span>
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Sua biblioteca completa sobre personalidade, comportamento humano e sistemas de autoconhecimento.
+                    </p>
+                    
+                    <div class="hero-cta">
+                        <a href="#explorar" class="btn btn-primary btn-lg">
+                            <span>Explorar conteúdos</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="#descobrir" class="btn btn-outline btn-lg">
+                            Descubra sua abelhinha
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Artigos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Tipologias</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">10k+</span>
+                            <span class="stat-label">Leitores</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="honeycomb-grid" aria-hidden="true">
+                        <!-- Hexágonos gerados via CSS -->
+                        <div class="hexagon hex-1"></div>
+                        <div class="hexagon hex-2"></div>
+                        <div class="hexagon hex-3"></div>
+                        <div class="hexagon hex-4"></div>
+                        <div class="hexagon hex-5"></div>
+                        <div class="hexagon hex-6"></div>
+                        <div class="hexagon hex-7"></div>
+                        <div class="hexagon hex-8"></div>
+                        <div class="hexagon hex-9"></div>
+                        <div class="hexagon hex-10"></div>
+                        <div class="hexagon hex-11"></div>
+                        <div class="hexagon hex-12"></div>
+                        <div class="hexagon hex-13"></div>
+                        <div class="hexagon hex-14"></div>
+                        <div class="hexagon hex-15"></div>
+                        <div class="hexagon hex-16"></div>
+                        <div class="hexagon hex-17"></div>
+                        <div class="hexagon hex-18"></div>
+                        <div class="hexagon hex-19"></div>
+                        <div class="hexagon hex-20"></div>
+                    </div>
+                    <div class="floating-bee" aria-hidden="true">
+                        <i class="fas fa-bee"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Wave divider -->
+            <div class="wave-divider" aria-hidden="true">
+                <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#FAF6F0"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Explore por Tema -->
+        <section class="topics-section" id="explorar" aria-labelledby="topics-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="topics-title" class="section-title">Explore por tema</h2>
+                    <p class="section-subtitle">Escolha uma área do conhecimento e comece sua jornada</p>
+                </header>
+                
+                <div class="topics-grid">
+                    <!-- Card 1 - Eneagrama -->
+                    <article class="topic-card" data-topic="eneagrama">
+                        <div class="card-icon-wrapper">
+                            <div class="card-icon">
+                                <i class="fas fa-globe" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Eneagrama</h3>
+                        <p class="card-description">9 tipos de personalidade e níveis de desenvolvimento</p>
+                        <a href="#eneagrama" class="card-link">
+                            Explorar 
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <div class="card-badge">Popular</div>
+                    </article>
+
+                    <!-- Card 2 - Socionics -->
+                    <article class="topic-card" data-topic="socionics">
+                        <div class="card-icon-wrapper">
+                            <div class="card-icon">
+                                <i class="fas fa-user-friends" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Socionics</h3>
+                        <p class="card-description">16 tipos sociais e padrões de relacionamento</p>
+                        <a href="#socionics" class="card-link">
+                            Explorar 
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 3 - Psicosofia -->
+                    <article class="topic-card" data-topic="psicosofia">
+                        <div class="card-icon-wrapper">
+                            <div class="card-icon">
+                                <i class="fas fa-heart-pulse" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Psicosofia</h3>
+                        <p class="card-description">Arquétipos e a jornada da consciência</p>
+                        <a href="#psicosofia" class="card-link">
+                            Explorar 
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 4 - Psicologia Junguiana -->
+                    <article class="topic-card" data-topic="junguiana">
+                        <div class="card-icon-wrapper">
+                            <div class="card-icon">
+                                <i class="fas fa-puzzle-piece" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Psicologia Junguiana</h3>
+                        <p class="card-description">Arquétipos, sombra e individuação</p>
+                        <a href="#junguiana" class="card-link">
+                            Explorar 
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <div class="card-badge badge-new">Novo</div>
+                    </article>
+
+                    <!-- Card 5 - Neurotype -->
+                    <article class="topic-card" data-topic="neurotype">
+                        <div class="card-icon-wrapper">
+                            <div class="card-icon">
+                                <i class="fas fa-brain" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Neurotype</h3>
+                        <p class="card-description">Estudo dos padrões mentais e cognitivos</p>
+                        <a href="#neurotype" class="card-link">
+                            Explorar 
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 6 - Outras Tipologias -->
+                    <article class="topic-card" data-topic="outras">
+                        <div class="card-icon-wrapper">
+                            <div class="card-icon">
+                                <i class="fas fa-compass" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <h3 class="card-title">Outras Tipologias</h3>
+                        <p class="card-description">Outros sistemas de padrões humanos</p>
+                        <a href="#outras" class="card-link">
+                            Explorar 
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Artigos em Destaque -->
+        <section class="articles-section" id="artigos" aria-labelledby="articles-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="articles-title" class="section-title">Artigos em destaque</h2>
+                    <a href="#todos-artigos" class="view-all">
+                        Ver todos 
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </header>
+                
+                <div class="articles-grid">
+                    <!-- Artigo 1 -->
+                    <article class="article-card featured">
+                        <div class="article-image">
+                            <div class="article-image-placeholder">
+                                <i class="fas fa-bee" aria-hidden="true"></i>
+                                <span class="article-category">Tipologia</span>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date"><i class="far fa-calendar" aria-hidden="true"></i> 15 Jan 2026</span>
+                                <span class="article-read-time"><i class="far fa-clock" aria-hidden="true"></i> 8 min</span>
+                            </div>
+                            <h3 class="article-title">Em breve</h3>
+                            <p class="article-excerpt">Novos artigos de tipologia estão chegando. Fique ligado!</p>
+                            <div class="article-footer">
+                                <span class="article-author">Por Colmeia</span>
+                                <button class="btn-bookmark" aria-label="Salvar artigo">
+                                    <i class="far fa-bookmark" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Artigo 2 -->
+                    <article class="article-card featured">
+                        <div class="article-image">
+                            <div class="article-image-placeholder">
+                                <i class="fas fa-bee" aria-hidden="true"></i>
+                                <span class="article-category">Autoconhecimento</span>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date"><i class="far fa-calendar" aria-hidden="true"></i> 12 Jan 2026</span>
+                                <span class="article-read-time"><i class="far fa-clock" aria-hidden="true"></i> 12 min</span>
+                            </div>
+                            <h3 class="article-title">Em breve</h3>
+                            <p class="article-excerpt">Novos artigos de tipologia estão chegando. Fique ligado!</p>
+                            <div class="article-footer">
+                                <span class="article-author">Por Colmeia</span>
+                                <button class="btn-bookmark" aria-label="Salvar artigo">
+                                    <i class="far fa-bookmark" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Artigo 3 -->
+                    <article class="article-card featured">
+                        <div class="article-image">
+                            <div class="article-image-placeholder">
+                                <i class="fas fa-bee" aria-hidden="true"></i>
+                                <span class="article-category">Psicologia</span>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date"><i class="far fa-calendar" aria-hidden="true"></i> 10 Jan 2026</span>
+                                <span class="article-read-time"><i class="far fa-clock" aria-hidden="true"></i> 6 min</span>
+                            </div>
+                            <h3 class="article-title">Em breve</h3>
+                            <p class="article-excerpt">Novos artigos de tipologia estão chegando. Fique ligado!</p>
+                            <div class="article-footer">
+                                <span class="article-author">Por Colmeia</span>
+                                <button class="btn-bookmark" aria-label="Salvar artigo">
+                                    <i class="far fa-bookmark" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Artigo 4 -->
+                    <article class="article-card featured">
+                        <div class="article-image">
+                            <div class="article-image-placeholder">
+                                <i class="fas fa-bee" aria-hidden="true"></i>
+                                <span class="article-category">Comportamento</span>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-date"><i class="far fa-calendar" aria-hidden="true"></i> 8 Jan 2026</span>
+                                <span class="article-read-time"><i class="far fa-clock" aria-hidden="true"></i> 10 min</span>
+                            </div>
+                            <h3 class="article-title">Em breve</h3>
+                            <p class="article-excerpt">Novos artigos de tipologia estão chegando. Fique ligado!</p>
+                            <div class="article-footer">
+                                <span class="article-author">Por Colmeia</span>
+                                <button class="btn-bookmark" aria-label="Salvar artigo">
+                                    <i class="far fa-bookmark" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section" aria-labelledby="newsletter-title">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h2 id="newsletter-title" class="newsletter-title">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            Receba conteúdos exclusivos
+                        </h2>
+                        <p class="newsletter-description">
+                            Inscreva-se para receber artigos, testes e novidades sobre personalidade e autoconhecimento.
+                        </p>
+                    </div>
+                    <form class="newsletter-form" aria-label="Formulário de newsletter">
+                        <div class="form-group">
+                            <input 
+                                type="email" 
+                                placeholder="Seu melhor e-mail" 
+                                class="form-input"
+                                required
+                                aria-required="true"
+                            >
+                            <button type="submit" class="btn btn-primary">
+                                Inscrever-se
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <p class="form-privacy">
+                            <i class="fas fa-lock" aria-hidden="true"></i>
+                            Respeitamos sua privacidade. Sem spam.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2026 Seu Nome. Todos os direitos reservados.</p>
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <i class="fas fa-bee" aria-hidden="true"></i>
+                        <span class="logo-text">Projeto Colmeia</span>
+                    </a>
+                    <p class="footer-description">
+                        Biblioteca colaborativa sobre personalidade, tipologia, autoconhecimento e comportamento humano.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-title">Navegação</h4>
+                    <ul class="footer-list">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#eneagrama">Eneagrama</a></li>
+                        <li><a href="#biblioteca">Biblioteca</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-title">Projeto</h4>
+                    <ul class="footer-list">
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#favoritos">Favoritos</a></li>
+                        <li><a href="#perfil">Perfil</a></li>
+                        <li><a href="#explorar">Explorar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-list">
+                        <li><a href="#privacidade">Privacidade</a></li>
+                        <li><a href="#termos">Termos</a></li>
+                        <li><a href="#cookies">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Projeto Colmeia. Todos os direitos reservados.</p>
+                <p>Feito com <i class="fas fa-heart" aria-hidden="true"></i> para o autoconhecimento</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Scroll to top button -->
+    <button class="scroll-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
 </body>
 </html>

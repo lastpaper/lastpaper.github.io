@@ -3,204 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PAPELARIA: Plataforma colaborativa de economia, pesquisa e pensamento crítico.">
-    <meta name="keywords" content="economia, macroeconomia, microeconomia, econometria, história do pensamento econômico">
+    <meta name="description" content="Perfil de Papel-Moeda - Economista Marxista">
+    <title>Papel-Moeda | Economista Marxista</title>
     
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="PAPELARIA - Economia e Pensamento Crítico">
-    <meta property="og:description" content="Onde a teoria econômica encontra a prática colaborativa.">
-    
-    <title>PAPELARIA | Economia, Pesquisa e Pensamento Crítico</title>
-    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Lora para leitura acadêmica (estilo Medium) e Inter para UI -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Pular para conteúdo principal</a>
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Efeito de scanline -->
+    <div class="scanlines"></div>
+    
+    <!-- Overlay de vinheta -->
+    <div class="vignette"></div>
+    
+    <!-- Container principal -->
+    <div class="main-container">
+        
+        <!-- Header com título glitch -->
+        <header class="header">
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="PAPEL-MOEDA">PAPEL-MOEDA</h1>
+            </div>
+            <p class="subtitle">Economista Marxista</p>
+            <div class="divider"></div>
+        </header>
 
-    <header class="header" role="banner">
-        <div class="container header-container">
-            <a href="/" class="logo" aria-label="PAPELARIA - Página inicial">
-                <i class="fas fa-feather-alt" aria-hidden="true"></i>
-                <span class="logo-text">PAPELARIA</span>
-            </a>
-            
-            <nav class="navbar" role="navigation" aria-label="Navegação principal">
-                <ul class="nav-list">
-                    <li><a href="#inicio" class="nav-link active">Início</a></li>
-                    <li class="dropdown">
-                        <button class="nav-link dropdown-toggle" aria-expanded="false">
-                            Áreas <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#macro">Macroeconomia</a></li>
-                            <li><a href="#micro">Microeconomia</a></li>
-                            <li><a href="#historia">História do Pensamento Econômico</a></li>
-                            <li><a href="#econometria">Econometria e Dados</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#autores" class="nav-link">Autores</a></li>
-                </ul>
+        <!-- Galeria de imagens 3D giratórias -->
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <div class="rotating-images">
+                    <!-- Imagem 1 -->
+                    <div class="image-card card-1">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-1.jpg" alt="Perfil 1" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                    
+                    <!-- Imagem 2 -->
+                    <div class="image-card card-2">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-2.jpg" alt="Perfil 2" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                    
+                    <!-- Imagem 3 -->
+                    <div class="image-card card-3">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-3.jpg" alt="Perfil 3" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                    
+                    <!-- Imagem 4 -->
+                    <div class="image-card card-4">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-4.jpg" alt="Perfil 4" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                    
+                    <!-- Imagem 5 -->
+                    <div class="image-card card-5">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-5.jpg" alt="Perfil 5" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                    
+                    <!-- Imagem 6 -->
+                    <div class="image-card card-6">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-6.jpg" alt="Perfil 6" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                    
+                    <!-- Imagem 7 -->
+                    <div class="image-card card-7">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-7.jpg" alt="Perfil 7" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                    
+                    <!-- Imagem 8 -->
+                    <div class="image-card card-8">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-8.jpg" alt="Perfil 8" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de informações -->
+        <section class="info-section">
+            <div class="info-card">
+                <div class="info-header">
+                    <i class="fas fa-user-tie"></i>
+                    <h2>Sobre Mim</h2>
+                </div>
                 
-                <div class="header-actions">
-                    <a href="#escrever" class="btn btn-sm btn-outline">
-                        <i class="fas fa-pen-nib" aria-hidden="true"></i> Escrever
-                    </a>
-                    <button class="icon-btn" aria-label="Perfil de usuário">
-                        <i class="fas fa-user-circle" aria-hidden="true"></i>
+                <div class="info-content">
+                    <p class="info-text">
+                        Estudante de <span class="highlight">Ciências Econômicas</span>, 
+                        militante <span class="highlight">marxista</span> e defensor das causas 
+                        anti-imperialistas.
+                    </p>
+                    
+                    <div class="flags-container">
+                        <div class="flag-item">
+                            <i class="fas fa-hammer"></i>
+                            <span>Marxismo</span>
+                        </div>
+                        <div class="flag-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Anti-imperialismo</span>
+                        </div>
+                        <div class="flag-item iran-flag">
+                            <i class="fas fa-mosque"></i>
+                            <span>Pró-Irã</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <i class="fas fa-book-reader"></i>
+                            <span class="stat-number">Economia</span>
+                            <span class="stat-label">Área de Estudo</span>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-chart-line"></i>
+                            <span class="stat-number">Marx</span>
+                            <span class="stat-label">Referência Teórica</span>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-fire"></i>
+                            <span class="stat-number">Revolução</span>
+                            <span class="stat-label">Objetivo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Player de música -->
+        <section class="music-section">
+            <div class="music-player">
+                <div class="music-visualizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                
+                <div class="music-controls">
+                    <button class="control-btn" id="prevBtn" title="Anterior">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    
+                    <button class="control-btn play-btn" id="playBtn" title="Play/Pause">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    
+                    <button class="control-btn" id="nextBtn" title="Próxima">
+                        <i class="fas fa-step-forward"></i>
                     </button>
                 </div>
                 
-                <button class="mobile-menu-toggle" aria-label="Abrir menu mobile" aria-expanded="false">
-                    <span class="hamburger"></span>
-                </button>
-            </nav>
-        </div>
-    </header>
-
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero" id="inicio" aria-labelledby="hero-title">
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <h1 id="hero-title" class="hero-title">
-                        <span class="hero-line line-1">Onde a teoria econômica</span>
-                        <span class="hero-line line-2">encontra a prática colaborativa.</span>
-                    </h1>
-                    <p class="hero-description">
-                        Uma plataforma aberta para pesquisadores, estudantes e entusiastas publicarem, debaterem e disseminarem conhecimento econômico com rigor e clareza.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#explorar" class="btn btn-primary btn-lg">
-                            <span>Ler artigos</span>
-                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                        <a href="#escrever" class="btn btn-ghost btn-lg">
-                            Começar a escrever
-                        </a>
+                <div class="music-info">
+                    <span class="music-title">Background Music</span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progressBar"></div>
                     </div>
                 </div>
-                <div class="hero-visual" aria-hidden="true">
-                    <div class="abstract-grid">
-                        <div class="grid-item item-1"></div>
-                        <div class="grid-item item-2"></div>
-                        <div class="grid-item item-3"></div>
-                        <div class="grid-item item-4"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Áreas do Conhecimento -->
-        <section class="topics-section" id="explorar" aria-labelledby="topics-title">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="topics-title" class="section-title">Explore por área</h2>
-                    <p class="section-subtitle">Navegue pelos principais campos da ciência econômica</p>
-                </header>
                 
-                <div class="topics-grid">
-                    <article class="topic-card">
-                        <div class="card-icon-wrapper"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
-                        <h3 class="card-title">Macroeconomia</h3>
-                        <p class="card-description">Política monetária, fiscal, crescimento e ciclos econômicos.</p>
-                    </article>
-
-                    <article class="topic-card">
-                        <div class="card-icon-wrapper"><i class="fas fa-balance-scale" aria-hidden="true"></i></div>
-                        <h3 class="card-title">Microeconomia</h3>
-                        <p class="card-description">Teoria do consumidor, firmas, mercados e falhas de mercado.</p>
-                    </article>
-
-                    <article class="topic-card">
-                        <div class="card-icon-wrapper"><i class="fas fa-landmark" aria-hidden="true"></i></div>
-                        <h3 class="card-title">História do Pensamento</h3>
-                        <p class="card-description">De Smith e Ricardo a Keynes, Hayek e as escolas contemporâneas.</p>
-                    </article>
-
-                    <article class="topic-card">
-                        <div class="card-icon-wrapper"><i class="fas fa-database" aria-hidden="true"></i></div>
-                        <h3 class="card-title">Econometria e Dados</h3>
-                        <p class="card-description">Análise causal, séries temporais e aplicações em R e Python.</p>
-                    </article>
-                </div>
+                <audio id="audioPlayer" loop>
+                    <source src="assets/music/background.mp3" type="audio/mpeg">
+                    Seu navegador não suporta o elemento de áudio.
+                </audio>
             </div>
         </section>
 
-        <!-- Artigos em Destaque (Simulação de Feed tipo Medium) -->
-        <section class="articles-section" id="artigos" aria-labelledby="articles-title">
-            <div class="container">
-                <header class="section-header">
-                    <h2 id="articles-title" class="section-title">Publicações recentes</h2>
-                    <a href="#todos" class="view-all">Ver todas <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                </header>
-                
-                <div class="articles-grid">
-                    <!-- Artigo 1 -->
-                    <article class="article-card">
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="author-name">Por Luiz</span>
-                                <span class="article-date">14 Jul 2026</span>
-                            </div>
-                            <h3 class="article-title">A evolução da teoria dos ciclos reais de negócios: uma revisão crítica</h3>
-                            <p class="article-excerpt">Uma análise sobre as limitações dos modelos RBC tradicionais e a incorporação de fricções financeiras...</p>
-                            <div class="article-footer">
-                                <span class="tag">Macroeconomia</span>
-                                <span class="read-time">8 min de leitura</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Artigo 2 -->
-                    <article class="article-card">
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="author-name">Por Maria Silva</span>
-                                <span class="article-date">12 Jul 2026</span>
-                            </div>
-                            <h3 class="article-title">Instrumentos variáveis em econometria aplicada: pressupostos e armadilhas</h3>
-                            <p class="article-excerpt">Como garantir a validade dos instrumentos e evitar o viés de variáveis omitidas em dados observacionais...</p>
-                            <div class="article-footer">
-                                <span class="tag">Econometria</span>
-                                <span class="read-time">12 min de leitura</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Artigo 3 -->
-                    <article class="article-card">
-                        <div class="article-content">
-                            <div class="article-meta">
-                                <span class="author-name">Por João Pereira</span>
-                                <span class="article-date">10 Jul 2026</span>
-                            </div>
-                            <h3 class="article-title">O debate Cambridge-Cambridge e suas implicações para a teoria do capital</h3>
-                            <p class="article-excerpt">Revisitando a controvérsia sobre a agregação do capital e a reversibilidade da técnica...</p>
-                            <div class="article-footer">
-                                <span class="tag">História do Pensamento</span>
-                                <span class="read-time">15 min de leitura</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+        <!-- Redes sociais -->
+        <section class="social-section">
+            <div class="social-container">
+                <a href="#" class="social-link" data-tooltip="Discord">
+                    <i class="fab fa-discord"></i>
+                    <div class="social-glow"></div>
+                </a>
+                <a href="#" class="social-link" data-tooltip="Twitter">
+                    <i class="fab fa-twitter"></i>
+                    <div class="social-glow"></div>
+                </a>
+                <a href="#" class="social-link" data-tooltip="GitHub">
+                    <i class="fab fa-github"></i>
+                    <div class="social-glow"></div>
+                </a>
+                <a href="#" class="social-link" data-tooltip="Telegram">
+                    <i class="fab fa-telegram"></i>
+                    <div class="social-glow"></div>
+                </a>
+                <a href="#" class="social-link" data-tooltip="Email">
+                    <i class="fas fa-envelope"></i>
+                    <div class="social-glow"></div>
+                </a>
             </div>
         </section>
-    </main>
 
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2026 PAPELARIA. Todos os direitos reservados.</p>
-                <p>Construído para o rigor e a disseminação do conhecimento econômico.</p>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-text">
+                    <i class="fas fa-copyright"></i> 2026 Papel-Moeda
+                </p>
+                <p class="footer-quote">
+                    "A história de toda sociedade até aqui é a história da luta de classes"
+                </p>
+                <p class="footer-author">- Karl Marx</p>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+
+    <!-- Efeito de cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
     <script src="js/main.js"></script>
 </body>

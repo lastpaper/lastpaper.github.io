@@ -275,7 +275,19 @@ document.addEventListener('DOMContentLoaded', () => {
     rotatingImages.addEventListener('mouseleave', () => {
         rotatingImages.style.animationPlayState = 'running';
     });
+    // ============================================
+    // CONTROLE DA ROTAÇÃO ORBITAL
+    // ============================================
+    const rotatingImages = document.querySelector('.rotating-images');
+    
+    // Pausa a rotação suavemente quando o mouse está sobre a área do site
+    document.querySelector('.main-container').addEventListener('mouseenter', () => {
+        if(rotatingImages) rotatingImages.style.animationPlayState = 'paused';
+    });
 
+    document.querySelector('.main-container').addEventListener('mouseleave', () => {
+        if(rotatingImages) rotatingImages.style.animationPlayState = 'running';
+    });
     // ============================================
     // EFEITO DE SOM AO CLICAR (opcional)
     // ============================================

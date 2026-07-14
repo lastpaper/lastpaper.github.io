@@ -258,7 +258,7 @@ body {
 
 .gallery-container {
     position: relative;
-    height: 600px;
+    height: 800px;
     transform-style: preserve-3d;
 }
 
@@ -754,60 +754,40 @@ body {
    RESPONSIVIDADE
    ============================================ */
 @media (max-width: 1024px) {
-    .rotating-images {
-        animation-duration: 40s;
-    }
+  .rotating-images {
+           animation-duration: 40s;
+       }
 
-    .image-card {
-        width: 200px;
-        height: 280px;
-        margin-left: -100px;
-        margin-top: -140px;
-    }
+       .image-card {
+           width: 200px;
+           height: 280px;
+           margin-left: -100px;
+           margin-top: -140px;
+       }
 
-    .card-1, .card-2, .card-3, .card-4,
-    .card-5, .card-6, .card-7, .card-8 {
-        transform: rotateY(calc(var(--i) * 45deg)) translateZ(300px);
+       .card-1, .card-2, .card-3, .card-4,
+       .card-5, .card-6, .card-7, .card-8 {
+           transform: rotateY(calc(var(--i) * 45deg)) translateZ(450px);
     }
 }
 
 @media (max-width: 768px) {
-    .cursor, .cursor-follower {
-        display: none;
-    }
+       .image-card {
+           width: 150px;
+           height: 200px;
+           margin-left: -75px;
+           margin-top: -100px;
+       }
 
-    body {
-        cursor: auto;
-    }
+       .gallery-container {
+           height: 600px;
+       }
 
-    .main-container {
-        padding: 1rem;
-    }
-
-    .image-card {
-        width: 150px;
-        height: 200px;
-        margin-left: -75px;
-        margin-top: -100px;
-    }
-
-    .gallery-container {
-        height: 400px;
-    }
-
-    .info-card {
-        padding: 2rem 1rem;
-    }
-
-    .flags-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .stats-container {
-        grid-template-columns: 1fr;
-    }
-}
+       .card-1, .card-2, .card-3, .card-4,
+       .card-5, .card-6, .card-7, .card-8 {
+           transform: rotateY(calc(var(--i) * 45deg)) translateZ(350px);
+       }
+   }
 
 /* ============================================
    EFEITOS ADICIONAIS

@@ -380,81 +380,58 @@ body {
 }
 
 /* ============================================
-   SEÇÃO DE INFORMAÇÕES
+   MELHORIAS NA SEÇÃO SOBRE MIM
    ============================================ */
-.info-section {
-    padding: 4rem 0;
-}
-
-.info-card {
-    background: linear-gradient(135deg, rgba(17, 17, 17, 0.9), rgba(26, 26, 26, 0.9));
-    border-radius: 20px;
-    padding: 3rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        inset 0 0 60px rgba(255, 0, 60, 0.05);
-    backdrop-filter: blur(10px);
-    animation: fadeInUp 1s ease-out 1s both;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.info-header {
-    text-align: center;
-    margin-bottom: 2rem;
-}
 
 .info-header i {
     font-size: 3rem;
-    color: var(--color-primary);
+    color: var(--color-accent); /* Dourado para o capelo, remete ao conhecimento */
     margin-bottom: 1rem;
     animation: glow 2s ease-in-out infinite;
 }
 
-@keyframes glow {
-    0%, 100% { filter: drop-shadow(0 0 10px var(--color-primary)); }
-    50% { filter: drop-shadow(0 0 30px var(--color-primary)); }
-}
-
-.info-header h2 {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    color: var(--color-text-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-}
-
-.info-content {
-    text-align: center;
-}
-
 .info-text {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--color-text-secondary);
-    line-height: 1.8;
-    margin-bottom: 2rem;
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Destaque para as palavras-chave no texto */
 .highlight {
     color: var(--color-accent);
     font-weight: 700;
     text-shadow: var(--glow-accent);
+    position: relative;
+    display: inline-block;
 }
 
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover .highlight::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Container de bandeiras/ideias */
 .flags-container {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     margin: 3rem 0;
     flex-wrap: wrap;
 }
@@ -462,75 +439,123 @@ body {
 .flag-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.05);
+    gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 50px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     font-weight: 600;
-    font-size: 1.1rem;
-}
-
-.flag-item i {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-family: var(--font-tech);
+    letter-spacing: 0.05em;
 }
 
 .flag-item:hover {
-    transform: translateY(-5px);
-    border-color: var(--color-primary);
-    box-shadow: var(--glow-primary);
+    transform: translateY(-5px) scale(1.05);
+    background: rgba(255, 255, 255, 0.08);
 }
 
+/* Estilo específico para o Irã (mantido e refinado) */
 .iran-flag {
-    background: linear-gradient(135deg, rgba(35, 159, 64, 0.2), rgba(218, 0, 0, 0.2));
+    background: linear-gradient(135deg, rgba(35, 159, 64, 0.15), rgba(218, 0, 0, 0.15));
     border-color: var(--color-iran-green);
 }
 
 .iran-flag:hover {
     border-color: var(--color-iran-red);
-    box-shadow: 0 0 30px rgba(218, 0, 0, 0.5);
+    box-shadow: 0 0 25px rgba(218, 0, 0, 0.4);
 }
 
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+/* NOVO: Estilo específico para a Palestina */
+.palestine-flag {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 120, 0, 0.2));
+    border-color: #007A3D; /* Verde da bandeira */
 }
 
-.stat-box {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 2rem;
-    text-align: center;
-    transition: all 0.3s ease;
+.palestine-flag:hover {
+    border-color: #E4312b; /* Vermelho da bandeira */
+    box-shadow: 0 0 25px rgba(228, 49, 43, 0.4);
 }
 
-.stat-box:hover {
-    transform: translateY(-10px);
+.palestine-flag i {
+    color: #ffffff;
+}
+
+/* NOVO: Estilo específico para Tecnologia/R */
+.tech-flag {
+    background: linear-gradient(135deg, rgba(0, 114, 188, 0.2), rgba(0, 240, 255, 0.1));
+    border-color: var(--color-secondary);
+}
+
+.tech-flag:hover {
     border-color: var(--color-secondary);
     box-shadow: var(--glow-secondary);
 }
 
+/* Stats Container refinado */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.stat-box {
+    background: rgba(17, 17, 17, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.stat-box:hover::before {
+    transform: scaleX(1);
+}
+
 .stat-box i {
-    font-size: 2.5rem;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
+}
+
+.stat-box:hover i {
+    color: var(--color-accent);
 }
 
 .stat-number {
     display: block;
     font-family: var(--font-tech);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .stat-label {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--color-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -861,222 +886,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(var(--color-secondary), var(--color-primary));
-}
-
-
-/* ============================================
-   INCREMENTO: HEMEROTECA A NOVA DEMOCRACIA
-   ============================================ */
-.and-hemeroteca-section {
-    padding: 3rem 0;
-    position: relative;
-}
-
-/* Ticker de Notícias (Marquee) */
-.ticker-wrap {
-    width: 100%;
-    overflow: hidden;
-    background: rgba(204, 0, 0, 0.08);
-    border-top: 1px solid var(--color-primary);
-    border-bottom: 1px solid var(--color-primary);
-    margin-bottom: 2rem;
-    padding: 0.8rem 0;
-}
-
-.ticker {
-    display: flex;
-    white-space: nowrap;
-    animation: tickerScroll 35s linear infinite;
-}
-
-.ticker__item {
-    padding: 0 3rem;
-    font-family: var(--font-tech);
-    color: var(--color-primary);
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-@keyframes tickerScroll {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
-
-/* Abas de Navegação */
-.and-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.and-tab {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--color-text-secondary);
-    padding: 0.6rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: var(--font-tech);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-.and-tab:hover, .and-tab.active {
-    background: #cc0000; /* Vermelho A Nova Democracia */
-    color: white;
-    border-color: #cc0000;
-    box-shadow: 0 0 15px rgba(204, 0, 0, 0.5);
-}
-
-/* Grid de Notícias */
-.and-news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.and-news-card {
-    background: rgba(17, 17, 17, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 4px solid #cc0000;
-    border-radius: 8px;
-    padding: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.and-news-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(204, 0, 0, 0.1), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
-.and-news-card:hover::before {
-    transform: translateX(100%);
-}
-
-.and-news-card:hover {
-    transform: translateY(-5px);
-    border-color: #cc0000;
-    box-shadow: 0 10px 30px rgba(204, 0, 0, 0.2);
-}
-
-.and-news-category {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.and-news-title {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    color: var(--color-text-primary);
-    margin-bottom: 1rem;
-    line-height: 1.4;
-}
-
-.and-news-date {
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* Modal de Leitura */
-.and-modal {
-    display: none;
-    position: fixed;
-    z-index: 10000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(8px);
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.and-modal.show {
-    display: flex;
-    opacity: 1;
-}
-
-.and-modal-content {
-    background: linear-gradient(135deg, #111111, #1a1a1a);
-    border: 1px solid #cc0000;
-    border-radius: 15px;
-    padding: 2.5rem;
-    max-width: 600px;
-    width: 90%;
-    position: relative;
-    box-shadow: 0 0 60px rgba(204, 0, 0, 0.3);
-    transform: translateY(-30px);
-    transition: transform 0.3s ease;
-}
-
-.and-modal.show .and-modal-content {
-    transform: translateY(0);
-}
-
-.and-modal-close {
-    position: absolute;
-    top: 15px; right: 20px;
-    color: var(--color-text-muted);
-    font-size: 2rem;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.and-modal-close:hover { color: #cc0000; }
-
-.and-modal-excerpt {
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-    margin-top: 1rem;
-    font-size: 1rem;
-}
-
-.and-read-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-    padding: 0.8rem 1.5rem;
-    background: #cc0000;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: var(--font-tech);
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: all 0.3s;
-}
-
-.and-read-more:hover {
-    background: var(--color-accent);
-    color: black;
-    box-shadow: var(--glow-accent);
-}
-
-/* Responsividade do Incremento */
-@media (max-width: 768px) {
-    .ticker__item { padding: 0 1.5rem; font-size: 0.8rem; }
-    .and-news-grid { grid-template-columns: 1fr; }
-    .and-modal-content { padding: 1.5rem; width: 95%; }
 }

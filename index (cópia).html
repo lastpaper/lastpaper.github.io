@@ -108,57 +108,61 @@
             </div>
         </section>
 
-        <!-- Seção de informações -->
-        <section class="info-section">
-            <div class="info-card">
-                <div class="info-header">
-                    <i class="fas fa-user-tie"></i>
-                    <h2>Sobre Mim</h2>
-                </div>
+        <!-- Seção de informações (Perfil Acadêmico e Militante) -->
+      <section class="info-section" aria-labelledby="profile-heading">
+          <article class="info-card">
+              <header class="info-header">
+                  <!-- Alterado de fa-user-tie (corporativo) para fa-user-graduate (acadêmico) -->
+                  <i class="fas fa-user-graduate" aria-hidden="true"></i>
+                  <h2 id="profile-heading">Perfil Acadêmico e Militante</h2>
+              </header>
 
-                <div class="info-content">
-                    <p class="info-text">
-                        Estudante de <span class="highlight">Ciências Econômicas</span>,
-                        militante <span class="highlight">marxista</span> e defensor das causas
-                        anti-imperialistas.
-                    </p>
+              <div class="info-content">
+                  <p class="info-text">
+                      Estudante de <span class="highlight">Ciências Econômicas</span>,
+                      pesquisador da <span class="highlight">Economia Política Crítica</span>
+                      e defensor intransigente das causas anti-imperialistas.
+                  </p>
 
-                    <div class="flags-container">
-                        <div class="flag-item">
-                            <i class="fas fa-hammer"></i>
-                            <span>Marxismo</span>
-                        </div>
-                        <div class="flag-item">
-                            <i class="fas fa-globe"></i>
-                            <span>Anti-imperialismo</span>
-                        </div>
-                        <div class="flag-item iran-flag">
-                            <i class="fas fa-mosque"></i>
-                            <span>Pró-Irã</span>
-                        </div>
-                    </div>
+                  <!-- Melhoria Semântica: Uso de lista não ordenada (<ul>) em vez de <div>s -->
+                  <ul class="pillars-container" role="list">
+                      <li class="pillar-item">
+                          <i class="fas fa-hammer" aria-hidden="true"></i>
+                          <span>Marxismo</span>
+                      </li>
+                      <li class="pillar-item">
+                          <i class="fas fa-globe-americas" aria-hidden="true"></i>
+                          <span>Anti-imperialismo</span>
+                      </li>
+                      <li class="pillar-item iran-flag">
+                          <i class="fas fa-mosque" aria-hidden="true"></i>
+                          <span>Pró-Irã</span>
+                      </li>
+                  </ul>
 
-                    <div class="stats-container">
-                        <div class="stat-box">
-                            <i class="fas fa-book-reader"></i>
-                            <span class="stat-number">Economia</span>
-                            <span class="stat-label">Área de Estudo</span>
-                        </div>
-                        <div class="stat-box">
-                            <i class="fas fa-chart-line"></i>
-                            <span class="stat-number">Marx</span>
-                            <span class="stat-label">Referência Teórica</span>
-                        </div>
-                        <div class="stat-box">
-                            <i class="fas fa-fire"></i>
-                            <span class="stat-number">Revolução</span>
-                            <span class="stat-label">Objetivo</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+                  <!-- Melhoria Semântica: Indicadores estruturados como lista -->
+                  <ul class="stats-container" role="list">
+                      <li class="stat-box">
+                          <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                          <span class="stat-value">Economia Política</span>
+                          <span class="stat-label">Área de Estudo</span>
+                      </li>
+                      <li class="stat-box">
+                          <i class="fas fa-book-open" aria-hidden="true"></i>
+                          <!-- Ajuste de conteúdo: Inclusão de Leontief para refletir seu estudo de MIP -->
+                          <span class="stat-value">K. Marx / Leontief</span>
+                          <span class="stat-label">Referências Teóricas</span>
+                      </li>
+                      <li class="stat-box">
+                          <i class="fas fa-cogs" aria-hidden="true"></i>
+                          <!-- Ajuste de conteúdo: "Práxis" soa mais acadêmico que apenas "Revolução" -->
+                          <span class="stat-value">Práxis Revolucionária</span>
+                          <span class="stat-label">Objetivo Final</span>
+                      </li>
+                  </ul>
+              </div>
+          </article>
+      </section>
         <!-- Player de música -->
         <section class="music-section">
             <div class="music-player">

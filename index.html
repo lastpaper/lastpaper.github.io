@@ -3,18 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Papel-Moeda | Links</title>
+    <title>Paper | Links</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
     <div class="container">
-        <!-- Substitua 'perfil.jpg' pelo nome da sua foto na mesma pasta -->
-        <img src="perfil.jpg" alt="Foto de Perfil" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?name=Papel+Moeda&background=ff003c&color=fff&size=150'">
+        <!-- CARROSSEL 3D GIRATÓRIO -->
+        <div class="scene">
+            <div class="carousel">
+                <!-- Substitua os 'src' pelas suas imagens reais na pasta assets/images/ -->
+                <div class="carousel__cell"><img src="assets/images/perfil-1.jpg" alt="Perfil 1"></div>
+                <div class="carousel__cell"><img src="assets/images/perfil-2.jpg" alt="Perfil 2"></div>
+                <div class="carousel__cell"><img src="assets/images/perfil-3.jpg" alt="Perfil 3"></div>
+                <div class="carousel__cell"><img src="assets/images/perfil-4.jpg" alt="Perfil 4"></div>
+                <div class="carousel__cell"><img src="assets/images/perfil-5.jpg" alt="Perfil 5"></div>
+                <div class="carousel__cell"><img src="assets/images/perfil-6.jpg" alt="Perfil 6"></div>
+                <div class="carousel__cell"><img src="assets/images/perfil-7.jpg" alt="Perfil 7"></div>
+                <div class="carousel__cell"><img src="assets/images/perfil-8.jpg" alt="Perfil 8"></div>
 
-        <h1>Papel-Moeda</h1>
-        <p class="bio">Marxista | Estudante de Ciências Econômicas</p>
+                <!-- NOME NO CENTRO -->
+                <div class="center-name">PAPER</div>
+            </div>
+        </div>
 
+        <!-- DESCRIÇÃO -->
+        <div class="description">
+            <h2>Estudante de Ciências Econômicas</h2>
+            <p>Marxista. Anti-imperialista. Construindo conhecimento crítico sobre a realidade material e as lutas de classe.</p>
+        </div>
+
+        <!-- LINKS ESTILO LINKTREE -->
         <div class="links">
             <a href="https://github.com/lastpaper" class="link-btn" target="_blank">
                 <i class="fab fa-github"></i> GitHub
@@ -26,14 +46,15 @@
                 <i class="fab fa-telegram"></i> Telegram
             </a>
             <a href="mailto:seu@email.com" class="link-btn">
-                <i class="fas fa-envelope"></i> Contato
+                <i class="fas fa-envelope"></i> E-mail
             </a>
         </div>
 
-        <footer class="footer">
-            <p>© 2026 Papel-Moeda</p>
+        <footer>
+            <p>© 2026 Paper</p>
         </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

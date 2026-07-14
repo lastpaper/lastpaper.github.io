@@ -1,39 +1,180 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background-color: #0a0a0a;
+    background-color: #050505;
+    background-image: radial-gradient(circle at 50% 50%, #1a0505 0%, #050505 70%);
     color: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
-.container { text-align: center; max-width: 400px; width: 100%; }
-
-.profile-pic {
-    width: 120px; height: 120px; border-radius: 50%;
-    border: 3px solid #ff003c; object-fit: cover; margin-bottom: 15px;
+.container {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
 }
 
-h1 { font-size: 1.8rem; margin-bottom: 5px; letter-spacing: 1px; }
-.bio { color: #aaaaaa; margin-bottom: 30px; font-size: 0.95rem; }
+/* --- CARROSSEL 3D --- */
+.scene {
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    margin: 0 auto 30px auto;
+    position: relative;
+}
 
-.links { display: flex; flex-direction: column; gap: 15px; }
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
+}
+
+/* Pausa a rotação ao passar o mouse */
+.carousel:hover {
+    animation-play-state: paused;
+}
+
+.carousel__cell {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 100px; /* (300 - 100) / 2 para centralizar */
+    top: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ff003c;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.5);
+    background: #111;
+}
+
+.carousel__cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Posicionamento das 8 imagens em círculo (360 / 8 = 45 graus) */
+.carousel__cell:nth-child(1) { transform: rotateY(0deg) translateZ(220px); }
+.carousel__cell:nth-child(2) { transform: rotateY(45deg) translateZ(220px); }
+.carousel__cell:nth-child(3) { transform: rotateY(90deg) translateZ(220px); }
+.carousel__cell:nth-child(4) { transform: rotateY(135deg) translateZ(220px); }
+.carousel__cell:nth-child(5) { transform: rotateY(180deg) translateZ(220px); }
+.carousel__cell:nth-child(6) { transform: rotateY(225deg) translateZ(220px); }
+.carousel__cell:nth-child(7) { transform: rotateY(270deg) translateZ(220px); }
+.carousel__cell:nth-child(8) { transform: rotateY(315deg) translateZ(220px); }
+
+@keyframes rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+/* NOME NO CENTRO */
+.center-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #ff003c;
+    text-shadow: 0 0 20px rgba(255, 0, 60, 0.8);
+    pointer-events: none; /* Deixa o mouse passar para pausar o carrossel */
+    z-index: 10;
+}
+
+/* --- DESCRIÇÃO --- */
+.description {
+    margin-bottom: 30px;
+}
+
+.description h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.description p {
+    font-size: 0.95rem;
+    color: #aaaaaa;
+    line-height: 1.5;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* --- LINKS --- */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
 
 .link-btn {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    background-color: #1a1a1a; color: #ffffff; text-decoration: none;
-    padding: 16px; border-radius: 50px; border: 1px solid #333;
-    font-weight: 600; font-size: 1rem; transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: #111111;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #333333;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 .link-btn:hover {
-    background-color: #ff003c; border-color: #ff003c;
+    background-color: #ff003c;
+    border-color: #ff003c;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 0, 60, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 0, 60, 0.4);
 }
 
-.footer { margin-top: 40px; color: #555; font-size: 0.8rem; }
+.link-btn i {
+    font-size: 1.2rem;
+}
+
+/* --- FOOTER --- */
+footer p {
+    color: #444444;
+    font-size: 0.8rem;
+}
+
+/* --- RESPONSIVO (CELULAR) --- */
+@media (max-width: 600px) {
+    .scene {
+        width: 250px;
+        height: 250px;
+    }
+    .carousel__cell {
+        width: 70px;
+        height: 70px;
+        left: 90px;
+        top: 90px;
+    }
+    /* Diminui o raio do círculo no celular para não vazar a tela */
+    .carousel__cell:nth-child(1) { transform: rotateY(0deg) translateZ(140px); }
+    .carousel__cell:nth-child(2) { transform: rotateY(45deg) translateZ(140px); }
+    .carousel__cell:nth-child(3) { transform: rotateY(90deg) translateZ(140px); }
+    .carousel__cell:nth-child(4) { transform: rotateY(135deg) translateZ(140px); }
+    .carousel__cell:nth-child(5) { transform: rotateY(180deg) translateZ(140px); }
+    .carousel__cell:nth-child(6) { transform: rotateY(225deg) translateZ(140px); }
+    .carousel__cell:nth-child(7) { transform: rotateY(270deg) translateZ(140px); }
+    .carousel__cell:nth-child(8) { transform: rotateY(315deg) translateZ(140px); }
+
+    .center-name {
+        font-size: 1.8rem;
+    }
+}

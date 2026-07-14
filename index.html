@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAPER | Universo Digital</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Perfil de Papel-Moeda - Economista Marxista">
+    <title>Papel-Moeda | Economista Marxista</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
 
-    <!-- Canvas para partículas interativas -->
-    <canvas id="galaxy-canvas"></canvas>
+    <!-- Efeito de scanline -->
+    <div class="scanlines"></div>
 
     <!-- Overlay de vinheta -->
     <div class="vignette"></div>
@@ -19,79 +29,142 @@
     <!-- Container principal -->
     <div class="main-container">
 
-        <!-- Título principal estilo retrô -->
+        <!-- Header com título glitch -->
         <header class="header">
-            <h1 class="main-title">PAPER</h1>
-            <p class="subtitle">Universo Digital</p>
+            <div class="glitch-wrapper">
+                <h1 class="glitch" data-text="PAPEL-MOEDA">PAPEL-MOEDA</h1>
+            </div>
+            <p class="subtitle">Economista Marxista</p>
             <div class="divider"></div>
         </header>
 
-        <!-- Carrossel 3D com 6 fotos -->
-        <section class="carousel-section">
-            <div class="scene">
-                <div class="carousel">
-                    <div class="carousel__cell">
-                        <img src="assets/images/perfil-1.jpg" alt="Perfil 1">
-                        <div class="cell-glow"></div>
+        <!-- Galeria de imagens 3D giratórias -->
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <div class="rotating-images">
+                    <!-- Imagem 1 -->
+                    <div class="image-card card-1">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-1.jpg" alt="Perfil 1" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
                     </div>
-                    <div class="carousel__cell">
-                        <img src="assets/images/perfil-2.jpg" alt="Perfil 2">
-                        <div class="cell-glow"></div>
+
+                    <!-- Imagem 2 -->
+                    <div class="image-card card-2">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-2.jpg" alt="Perfil 2" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
                     </div>
-                    <div class="carousel__cell">
-                        <img src="assets/images/perfil-3.jpg" alt="Perfil 3">
-                        <div class="cell-glow"></div>
+
+                    <!-- Imagem 3 -->
+                    <div class="image-card card-3">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-3.jpg" alt="Perfil 3" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
                     </div>
-                    <div class="carousel__cell">
-                        <img src="assets/images/perfil-4.jpg" alt="Perfil 4">
-                        <div class="cell-glow"></div>
+
+                    <!-- Imagem 4 -->
+                    <div class="image-card card-4">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-4.jpg" alt="Perfil 4" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
                     </div>
-                    <div class="carousel__cell">
-                        <img src="assets/images/perfil-5.jpg" alt="Perfil 5">
-                        <div class="cell-glow"></div>
+
+                    <!-- Imagem 5 -->
+                    <div class="image-card card-5">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-5.jpg" alt="Perfil 5" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
                     </div>
-                    <div class="carousel__cell">
-                        <img src="assets/images/perfil-6.jpg" alt="Perfil 6">
-                        <div class="cell-glow"></div>
+
+                    <!-- Imagem 6 -->
+                    <div class="image-card card-6">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-6.jpg" alt="Perfil 6" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Imagem 7 -->
+                    <div class="image-card card-7">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-7.jpg" alt="Perfil 7" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Imagem 8 -->
+                    <div class="image-card card-8">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-8.jpg" alt="Perfil 8" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Descrição -->
-        <section class="description-section">
-            <h2 class="section-title">Sobre Mim</h2>
-            <p class="description-text">
-                Explorador do cosmos digital. Estudante de Ciências Econômicas,
-                pensador crítico e construtor de realidades. Cada ponto de luz
-                neste universo representa uma ideia, uma luta, uma revolução.
-            </p>
-        </section>
+        <!-- Seção de informações -->
+        <section class="info-section">
+            <div class="info-card">
+                <div class="info-header">
+                    <i class="fas fa-user-tie"></i>
+                    <h2>Sobre Mim</h2>
+                </div>
 
-        <!-- Links de redes sociais -->
-        <section class="social-section">
-            <h2 class="section-title">Conecte-se</h2>
-            <div class="social-links">
-                <a href="https://github.com/lastpaper" class="social-link" target="_blank" data-tooltip="GitHub">
-                    <i class="fab fa-github"></i>
-                    <div class="link-glow"></div>
-                </a>
-                <a href="https://twitter.com/seu_usuario" class="social-link" target="_blank" data-tooltip="Twitter">
-                    <i class="fab fa-twitter"></i>
-                    <div class="link-glow"></div>
-                </a>
-                <a href="https://t.me/seu_usuario" class="social-link" target="_blank" data-tooltip="Telegram">
-                    <i class="fab fa-telegram"></i>
-                    <div class="link-glow"></div>
-                </a>
-                <a href="https://instagram.com/seu_usuario" class="social-link" target="_blank" data-tooltip="Instagram">
-                    <i class="fab fa-instagram"></i>
-                    <div class="link-glow"></div>
-                </a>
-                <a href="mailto:seu@email.com" class="social-link" data-tooltip="Email">
-                    <i class="fas fa-envelope"></i>
-                    <div class="link-glow"></div>
-                </a>
+                <div class="info-content">
+                    <p class="info-text">
+                        Estudante de <span class="highlight">Ciências Econômicas</span>,
+                        militante <span class="highlight">marxista</span> e defensor das causas
+                        anti-imperialistas.
+                    </p>
+
+                    <div class="flags-container">
+                        <div class="flag-item">
+                            <i class="fas fa-hammer"></i>
+                            <span>Marxismo</span>
+                        </div>
+                        <div class="flag-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Anti-imperialismo</span>
+                        </div>
+                        <div class="flag-item iran-flag">
+                            <i class="fas fa-mosque"></i>
+                            <span>Pró-Irã</span>
+                        </div>
+                    </div>
+
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <i class="fas fa-book-reader"></i>
+                            <span class="stat-number">Economia</span>
+                            <span class="stat-label">Área de Estudo</span>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-chart-line"></i>
+                            <span class="stat-number">Marx</span>
+                            <span class="stat-label">Referência Teórica</span>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-fire"></i>
+                            <span class="stat-number">Revolução</span>
+                            <span class="stat-label">Objetivo</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -104,18 +177,24 @@
                     <div class="bar"></div>
                     <div class="bar"></div>
                     <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
                 </div>
 
                 <div class="music-controls">
-                    <button class="control-btn" id="playBtn">
+                    <button class="control-btn" id="prevBtn" title="Anterior">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+
+                    <button class="control-btn play-btn" id="playBtn" title="Play/Pause">
                         <i class="fas fa-play"></i>
+                    </button>
+
+                    <button class="control-btn" id="nextBtn" title="Próxima">
+                        <i class="fas fa-step-forward"></i>
                     </button>
                 </div>
 
                 <div class="music-info">
-                    <span class="music-title">Cosmic Journey</span>
+                    <span class="music-title">Background Music</span>
                     <div class="progress-bar">
                         <div class="progress" id="progressBar"></div>
                     </div>
@@ -123,18 +202,55 @@
 
                 <audio id="audioPlayer" loop>
                     <source src="assets/music/background.mp3" type="audio/mpeg">
+                    Seu navegador não suporta o elemento de áudio.
                 </audio>
+            </div>
+        </section>
+
+        <!-- Redes sociais -->
+        <section class="social-section">
+            <div class="social-container">
+                <a href="#" class="social-link" data-tooltip="Discord">
+                    <i class="fab fa-discord"></i>
+                    <div class="social-glow"></div>
+                </a>
+                <a href="#" class="social-link" data-tooltip="Twitter">
+                    <i class="fab fa-twitter"></i>
+                    <div class="social-glow"></div>
+                </a>
+                <a href="#" class="social-link" data-tooltip="GitHub">
+                    <i class="fab fa-github"></i>
+                    <div class="social-glow"></div>
+                </a>
+                <a href="#" class="social-link" data-tooltip="Telegram">
+                    <i class="fab fa-telegram"></i>
+                    <div class="social-glow"></div>
+                </a>
+                <a href="#" class="social-link" data-tooltip="Email">
+                    <i class="fas fa-envelope"></i>
+                    <div class="social-glow"></div>
+                </a>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <p class="footer-quote">"O universo não é apenas o que vemos, mas o que imaginamos"</p>
-            <p class="footer-text">© 2026 PAPER</p>
+            <div class="footer-content">
+                <p class="footer-text">
+                    <i class="fas fa-copyright"></i> 2026 Papel-Moeda
+                </p>
+                <p class="footer-quote">
+                    "A história de toda sociedade até aqui é a história da luta de classes"
+                </p>
+                <p class="footer-author">- Karl Marx</p>
+            </div>
         </footer>
-
     </div>
 
-    <script src="script.js"></script>
+    <!-- Efeito de cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

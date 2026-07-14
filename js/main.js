@@ -1,248 +1,316 @@
 /* ============================================
-   SISTEMA DE PARTÍCULAS INTERATIVAS
+   PAPEL-MOEDA - INTERATIVIDADE
    ============================================ */
-const canvas = document.getElementById('galaxy-canvas');
-const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+document.addEventListener('DOMContentLoaded', () => {
 
-let particlesArray = [];
-const numberOfParticles = 150;
-let mouse = {
-    x: null,
-    y: null,
-    radius: 150
-};
+    // ============================================
+    // CURSOR PERSONALIZADO
+    // ============================================
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
 
-window.addEventListener('mousemove', (event) => {
-    mouse.x = event.x;
-    mouse.y = event.y;
-});
+    if (window.innerWidth > 768) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
 
-window.addEventListener('mouseout', () => {
-    mouse.x = undefined;
-    mouse.y = undefined;
-});
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX - 10 + 'px';
+                cursorFollower.style.top = e.clientY - 10 + 'px';
+            }, 100);
+        });
 
-class Particle {
-    constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.size = size;
-        this.color = color;
+        // Efeito de hover em elementos interativos
+        const interactiveElements = document.querySelectorAll('a, button, .image-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+                cursorFollower.style.transform = 'scale(1.5)';
+            });
+
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursorFollower.style.transform = 'scale(1)';
+            });
+        });
     }
 
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
+    // ============================================
+    // SISTEMA DE PARTÍCULAS
+    // ============================================
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
 
-    update() {
-        // Verificar se a partícula está dentro dos limites da tela
-        if (this.x > canvas.width || this.x < 0) {
-            this.directionX = -this.directionX;
-        }
-        if (this.y > canvas.height || this.y < 0) {
-            this.directionY = -this.directionY;
-        }
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-        // Verificar colisão com o mouse
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
+    let particlesArray = [];
+    const numberOfParticles = 100;
 
-        if (distance < mouse.radius + this.size) {
-            if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                this.x += 3;
-            }
-            if (mouse.x > this.x && this.x > this.size * 10) {
-                this.x -= 3;
-            }
-            if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                this.y += 3;
-            }
-            if (mouse.y > this.y && this.y > this.size * 10) {
-                this.y -= 3;
-            }
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 0.5;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.speedY = Math.random() * 1 - 0.5;
+            this.color = this.getRandomColor();
         }
 
-        // Mover partícula
-        this.x += this.directionX;
-        this.y += this.directionY;
+        getRandomColor() {
+            const colors = ['#ff003c', '#00f0ff', '#ffd700'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
 
-        this.draw();
-    }
-}
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
 
-function init() {
-    particlesArray = [];
-    let colors = ['#ff006e', '#8338ec', '#3a86ff', '#ffbe0b', '#fb5607'];
-
-    for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 3) + 1;
-        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 2) - 1;
-        let directionY = (Math.random() * 2) - 1;
-        let color = colors[Math.floor(Math.random() * colors.length)];
-
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-    }
-}
-
-function connect() {
-    let opacityValue = 1;
-    for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-            let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-                         + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-
-            if (distance < (canvas.width / 10) * (canvas.height / 10)) {
-                opacityValue = 1 - (distance / 10000);
-                ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue * 0.2})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                ctx.stroke();
+            if (this.x > canvas.width || this.x < 0) {
+                this.speedX = -this.speedX;
+            }
+            if (this.y > canvas.height || this.y < 0) {
+                this.speedY = -this.speedY;
             }
         }
+
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = 0.6;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+        }
     }
-}
 
-function animate() {
-    requestAnimationFrame(animate);
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
+    function initParticles() {
+        particlesArray = [];
+        for (let i = 0; i < numberOfParticles; i++) {
+            particlesArray.push(new Particle());
+        }
     }
-    connect();
-}
 
-init();
-animate();
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-window.addEventListener('resize', () => {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-    init();
-});
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
 
-/* ============================================
-   PLAYER DE MÚSICA
-   ============================================ */
-const audioPlayer = document.getElementById('audioPlayer');
-const playBtn = document.getElementById('playBtn');
-const progressBar = document.getElementById('progressBar');
-const bars = document.querySelectorAll('.bar');
+            // Conectar partículas próximas
+            for (let j = i; j < particlesArray.length; j++) {
+                const dx = particlesArray[i].x - particlesArray[j].x;
+                const dy = particlesArray[i].y - particlesArray[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
 
-let isPlaying = false;
+                if (distance < 100) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - distance/1000})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
 
-playBtn.addEventListener('click', togglePlay);
-
-function togglePlay() {
-    if (isPlaying) {
-        audioPlayer.pause();
-        playBtn.innerHTML = '<i class="fas fa-play"></i>';
-        bars.forEach(bar => bar.style.animationPlayState = 'paused');
-    } else {
-        audioPlayer.play();
-        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        bars.forEach(bar => bar.style.animationPlayState = 'running');
+        requestAnimationFrame(animateParticles);
     }
-    isPlaying = !isPlaying;
-}
 
-audioPlayer.addEventListener('timeupdate', () => {
-    const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    progressBar.style.width = progress + '%';
-});
+    initParticles();
+    animateParticles();
 
-progressBar.parentElement.addEventListener('click', (e) => {
-    const width = e.target.parentElement.offsetWidth;
-    const clickX = e.offsetX;
-    const duration = audioPlayer.duration;
-    audioPlayer.currentTime = (clickX / width) * duration;
-});
+    // Redimensionar canvas
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
+    });
 
-/* ============================================
-   EFEITO DE PARALLAX NO TÍTULO
-   ============================================ */
-document.addEventListener('mousemove', (e) => {
-    const title = document.querySelector('.main-title');
-    const x = (window.innerWidth - e.pageX * 2) / 100;
-    const y = (window.innerHeight - e.pageY * 2) / 100;
+    // ============================================
+    // PLAYER DE MÚSICA
+    // ============================================
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progressBar');
+    const bars = document.querySelectorAll('.bar');
 
-    title.style.transform = `translateX(${x}px) translateY(${y}px)`;
-});
+    let isPlaying = false;
 
-/* ============================================
-   ANIMAÇÃO DE ENTRADA AO SCROLL
-   ============================================ */
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+    // Play/Pause
+    playBtn.addEventListener('click', togglePlay);
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+    function togglePlay() {
+        if (isPlaying) {
+            audioPlayer.pause();
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            bars.forEach(bar => bar.style.animationPlayState = 'paused');
+        } else {
+            audioPlayer.play();
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            bars.forEach(bar => bar.style.animationPlayState = 'running');
+        }
+        isPlaying = !isPlaying;
+    }
+
+    // Atualizar barra de progresso
+    audioPlayer.addEventListener('timeupdate', () => {
+        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.style.width = progress + '%';
+    });
+
+    // Clique na barra de progresso
+    progressBar.parentElement.addEventListener('click', (e) => {
+        const width = e.target.parentElement.offsetWidth;
+        const clickX = e.offsetX;
+        const duration = audioPlayer.duration;
+        audioPlayer.currentTime = (clickX / width) * duration;
+    });
+
+    // Botões anterior/próxima (simulação)
+    prevBtn.addEventListener('click', () => {
+        audioPlayer.currentTime = 0;
+        if (!isPlaying) {
+            togglePlay();
         }
     });
-}, observerOptions);
 
-document.querySelectorAll('.description-section, .social-section, .music-section').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'all 0.8s ease-out';
-    observer.observe(el);
-});
+    nextBtn.addEventListener('click', () => {
+        audioPlayer.currentTime = 0;
+        if (!isPlaying) {
+            togglePlay();
+        }
+    });
 
-/* ============================================
-   EFEITO DE CLIQUE NAS PARTÍCULAS
-   ============================================ */
-document.addEventListener('click', (e) => {
-    createClickEffect(e.clientX, e.clientY);
-});
+    // ============================================
+    // EFEITO DE PARALLAX NAS IMAGENS
+    // ============================================
+    document.addEventListener('mousemove', (e) => {
+        const cards = document.querySelectorAll('.image-card');
+        const mouseX = e.clientX / window.innerWidth - 0.5;
+        const mouseY = e.clientY / window.innerHeight - 0.5;
 
-function createClickEffect(x, y) {
-    for (let i = 0; i < 8; i++) {
+        cards.forEach((card, index) => {
+            const speed = (index + 1) * 10;
+            const x = mouseX * speed;
+            const y = mouseY * speed;
+
+            if (!card.matches(':hover')) {
+                card.style.transform += ` rotateX(${y}deg) rotateY(${-x}deg)`;
+            }
+        });
+    });
+
+    // ============================================
+    // ANIMAÇÃO DE ENTRADA AO SCROLL
+    // ============================================
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observar elementos
+    document.querySelectorAll('.info-card, .music-player, .social-container').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s ease-out';
+        observer.observe(el);
+    });
+
+    // ============================================
+    // EFEITO DE DIGITAÇÃO NO TÍTULO
+    // ============================================
+    const glitchElement = document.querySelector('.glitch');
+    const originalText = glitchElement.textContent;
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+    function glitchText() {
+        let iterations = 0;
+        const interval = setInterval(() => {
+            glitchElement.textContent = originalText
+                .split('')
+                .map((char, index) => {
+                    if (index < iterations) {
+                        return originalText[index];
+                    }
+                    return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join('');
+
+            if (iterations >= originalText.length) {
+                clearInterval(interval);
+            }
+
+            iterations += 1/3;
+        }, 50);
+    }
+
+    // Executar glitch a cada 5 segundos
+    setInterval(glitchText, 5000);
+
+    // ============================================
+    // CONTROLE DE VELOCIDADE DAS IMAGENS
+    // ============================================
+    const rotatingImages = document.querySelector('.rotating-images');
+    let currentSpeed = 30; // segundos para uma rotação completa
+
+    // Pausar rotação ao passar o mouse
+    rotatingImages.addEventListener('mouseenter', () => {
+        rotatingImages.style.animationPlayState = 'paused';
+    });
+
+    rotatingImages.addEventListener('mouseleave', () => {
+        rotatingImages.style.animationPlayState = 'running';
+    });
+
+    // ============================================
+    // EFEITO DE SOM AO CLICAR (opcional)
+    // ============================================
+    document.addEventListener('click', (e) => {
+        // Criar partícula no ponto do clique
+        createClickParticle(e.clientX, e.clientY);
+    });
+
+    function createClickParticle(x, y) {
         const particle = document.createElement('div');
         particle.style.position = 'fixed';
         particle.style.left = x + 'px';
         particle.style.top = y + 'px';
-        particle.style.width = '8px';
-        particle.style.height = '8px';
-        particle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        particle.style.width = '10px';
+        particle.style.height = '10px';
+        particle.style.background = 'var(--color-primary)';
         particle.style.borderRadius = '50%';
         particle.style.pointerEvents = 'none';
         particle.style.zIndex = '9999';
-        particle.style.boxShadow = '0 0 20px currentColor';
+        particle.style.boxShadow = '0 0 20px var(--color-primary)';
 
         document.body.appendChild(particle);
 
-        const angle = (Math.PI * 2 * i) / 8;
-        const velocity = 5;
+        // Animar
         let opacity = 1;
-        let size = 8;
+        let size = 10;
 
         const animate = () => {
             opacity -= 0.02;
-            size += 1;
+            size += 2;
 
             particle.style.opacity = opacity;
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
-            particle.style.left = (x + Math.cos(angle) * velocity * (1 - opacity) * 50) + 'px';
-            particle.style.top = (y + Math.sin(angle) * velocity * (1 - opacity) * 50) + 'px';
+            particle.style.transform = `translate(-${size/2}px, -${size/2}px)`;
 
             if (opacity > 0) {
                 requestAnimationFrame(animate);
@@ -253,10 +321,12 @@ function createClickEffect(x, y) {
 
         animate();
     }
-}
 
-/* ============================================
-   CONSOLE MESSAGE
-   ============================================ */
-console.log('%c PAPER - UNIVERSO DIGITAL 🌌', 'color: #ff006e; font-size: 24px; font-weight: bold;');
-console.log('%cBem-vindo ao cosmos digital', 'color: #8338ec; font-size: 14px;');
+    // ============================================
+    // CONSOLE MESSAGE
+    // ============================================
+    console.log('%c🔥 PAPEL-MOEDA 🔥', 'color: #ff003c; font-size: 24px; font-weight: bold;');
+    console.log('%cEconomista Marxista | Pró-Irã', 'color: #00f0ff; font-size: 14px;');
+    console.log('%c"A história de toda sociedade até aqui é a história da luta de classes"', 'color: #ffd700; font-style: italic;');
+
+});

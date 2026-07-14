@@ -34,7 +34,6 @@
             <div class="glitch-wrapper">
                 <h1 class="gradient-title">PAPEL-MOEDA</h1>
             </div>
-            <p class="subtitle">Economista Marxista</p>
             <div class="divider"></div>
         </header>
 
@@ -241,6 +240,57 @@
             </div>
         </footer>
     </div>
+
+    <!-- ============================================
+     INCREMENTO: HEMEROTECA A NOVA DEMOCRACIA
+     ============================================ -->
+<section class="and-hemeroteca-section" id="and-hemeroteca">
+
+    <!-- Ticker de Notícias Urgentes -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker__item">🔴 PLANTÃO: Irã atinge bases ianques em cinco países em resposta a agressões</div>
+            <div class="ticker__item">🔴 BRASIL: Mineradora contamina Pantanal e expulsa comunidades tradicionais</div>
+            <div class="ticker__item">🔴 GEOPOLÍTICA: EUA articulam rede de inteligência contra "ressurgimento da extrema esquerda"</div>
+            <div class="ticker__item">🔴 CULTURA: Espaço Cultural BNDES apresenta "Quarteto Carlos Gomes"</div>
+        </div>
+    </div>
+
+    <div class="block-card and-card">
+        <div class="block-header">
+            <i class="fas fa-newspaper" style="color: #cc0000;"></i>
+            <h2>Hemeroteca: A Nova Democracia</h2>
+            <p class="block-subtitle">A voz da resistência anti-imperialista e da luta de classes</p>
+        </div>
+
+        <!-- Abas de Navegação -->
+        <div class="and-tabs">
+            <button class="and-tab active" data-category="todas">Todas</button>
+            <button class="and-tab" data-category="Internacional">Internacional</button>
+            <button class="and-tab" data-category="Brasil">Brasil</button>
+            <button class="and-tab" data-category="Reportagem Especial">Reportagens</button>
+        </div>
+
+        <!-- Grid de Notícias (Preenchido via JS) -->
+        <div class="and-news-grid" id="andNewsGrid">
+            <!-- O JavaScript injetará os cards aqui -->
+        </div>
+    </div>
+</section>
+
+<!-- Modal de Leitura Rápida -->
+<div class="and-modal" id="andModal">
+    <div class="and-modal-content">
+        <span class="and-modal-close">&times;</span>
+        <span class="and-news-category" id="modalCategory"></span>
+        <h3 id="modalTitle"></h3>
+        <div class="and-news-date" id="modalDate"></div>
+        <p class="and-modal-excerpt" id="modalExcerpt"></p>
+        <a href="#" target="_blank" class="and-read-more" id="modalLink">
+            Ler matéria completa no site oficial <i class="fas fa-external-link-alt"></i>
+        </a>
+    </div>
+</div>
 
     <!-- Efeito de cursor personalizado -->
     <div class="cursor"></div>

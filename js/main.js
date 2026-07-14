@@ -1,5 +1,5 @@
 /* ============================================
-   PAPEL-MOEDA - INTERATIVIDADE
+   PAPEL-MOEDA - INTERATIVIDADE (SEM GALERIA 3D)
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         });
 
-        // Efeito de hover em elementos interativos
-        const interactiveElements = document.querySelectorAll('a, button, .image-card');
+        const interactiveElements = document.querySelectorAll('a, button, .stat-box, .flag-item');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.transform = 'scale(2)';
@@ -99,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
             particlesArray[i].update();
             particlesArray[i].draw();
 
-            // Conectar partículas próximas
             for (let j = i; j < particlesArray.length; j++) {
                 const dx = particlesArray[i].x - particlesArray[j].x;
                 const dy = particlesArray[i].y - particlesArray[j].y;
@@ -122,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     animateParticles();
 
-    // Redimensionar canvas
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -141,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isPlaying = false;
 
-    // Play/Pause
     playBtn.addEventListener('click', togglePlay);
 
     function togglePlay() {
@@ -157,13 +153,11 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlaying = !isPlaying;
     }
 
-    // Atualizar barra de progresso
     audioPlayer.addEventListener('timeupdate', () => {
         const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
         progressBar.style.width = progress + '%';
     });
 
-    // Clique na barra de progresso
     progressBar.parentElement.addEventListener('click', (e) => {
         const width = e.target.parentElement.offsetWidth;
         const clickX = e.offsetX;
@@ -171,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         audioPlayer.currentTime = (clickX / width) * duration;
     });
 
-    // Botões anterior/próxima (simulação)
     prevBtn.addEventListener('click', () => {
         audioPlayer.currentTime = 0;
         if (!isPlaying) {
@@ -184,25 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isPlaying) {
             togglePlay();
         }
-    });
-
-    // ============================================
-    // EFEITO DE PARALLAX NAS IMAGENS
-    // ============================================
-    document.addEventListener('mousemove', (e) => {
-        const cards = document.querySelectorAll('.image-card');
-        const mouseX = e.clientX / window.innerWidth - 0.5;
-        const mouseY = e.clientY / window.innerHeight - 0.5;
-
-        cards.forEach((card, index) => {
-            const speed = (index + 1) * 10;
-            const x = mouseX * speed;
-            const y = mouseY * speed;
-
-            if (!card.matches(':hover')) {
-                card.style.transform += ` rotateX(${y}deg) rotateY(${-x}deg)`;
-            }
-        });
     });
 
     // ============================================
@@ -222,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Observar elementos
     document.querySelectorAll('.info-card, .music-player, .social-container').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -231,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ============================================
-    // EFEITO DE DIGITAÇÃO NO TÍTULO
+    // EFEITO DE DIGITAÇÃO GLITCH NO TÍTULO
     // ============================================
     const glitchElement = document.querySelector('.glitch');
     const originalText = glitchElement.textContent;
@@ -258,41 +231,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     }
 
-    // Executar glitch a cada 5 segundos
     setInterval(glitchText, 5000);
 
     // ============================================
-    // CONTROLE DE VELOCIDADE DAS IMAGENS
-    // ============================================
-    const rotatingImages = document.querySelector('.rotating-images');
-    let currentSpeed = 30; // segundos para uma rotação completa
-
-    // Pausar rotação ao passar o mouse
-    rotatingImages.addEventListener('mouseenter', () => {
-        rotatingImages.style.animationPlayState = 'paused';
-    });
-
-    rotatingImages.addEventListener('mouseleave', () => {
-        rotatingImages.style.animationPlayState = 'running';
-    });
-    // ============================================
-    // CONTROLE DA ROTAÇÃO ORBITAL
-    // ============================================
-    const rotatingImages = document.querySelector('.rotating-images');
-    
-    // Pausa a rotação suavemente quando o mouse está sobre a área do site
-    document.querySelector('.main-container').addEventListener('mouseenter', () => {
-        if(rotatingImages) rotatingImages.style.animationPlayState = 'paused';
-    });
-
-    document.querySelector('.main-container').addEventListener('mouseleave', () => {
-        if(rotatingImages) rotatingImages.style.animationPlayState = 'running';
-    });
-    // ============================================
-    // EFEITO DE SOM AO CLICAR (opcional)
+    // PARTÍCULAS AO CLICAR
     // ============================================
     document.addEventListener('click', (e) => {
-        // Criar partícula no ponto do clique
         createClickParticle(e.clientX, e.clientY);
     });
 
@@ -311,7 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.body.appendChild(particle);
 
-        // Animar
         let opacity = 1;
         let size = 10;
 

@@ -298,14 +298,14 @@ body {
 }
 
 /* Posicionamento das 8 imagens em círculo 3D */
-.card-1 { transform: rotateY(0deg) translateZ(400px); }
-.card-2 { transform: rotateY(45deg) translateZ(400px); }
-.card-3 { transform: rotateY(90deg) translateZ(400px); }
-.card-4 { transform: rotateY(135deg) translateZ(400px); }
-.card-5 { transform: rotateY(180deg) translateZ(400px); }
-.card-6 { transform: rotateY(225deg) translateZ(400px); }
-.card-7 { transform: rotateY(270deg) translateZ(400px); }
-.card-8 { transform: rotateY(315deg) translateZ(400px); }
+.card-1 { transform: rotateY(0deg) translateZ(600px); }
+.card-2 { transform: rotateY(45deg) translateZ(600px); }
+.card-3 { transform: rotateY(90deg) translateZ(600px); }
+.card-4 { transform: rotateY(135deg) translateZ(600px); }
+.card-5 { transform: rotateY(180deg) translateZ(600px); }
+.card-6 { transform: rotateY(225deg) translateZ(600px); }
+.card-7 { transform: rotateY(270deg) translateZ(600px); }
+.card-8 { transform: rotateY(315deg) translateZ(600px); }
 
 .image-wrapper {
     width: 100%;

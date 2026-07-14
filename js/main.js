@@ -1,5 +1,5 @@
 /* ============================================
-   PAPEL-MOEDA - INTERATIVIDADE
+   PAPEL-MOEDA - INTERATIVIDADE COM MOVIMENTO
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 100);
         });
 
-        // Efeito de hover em elementos interativos
         const interactiveElements = document.querySelectorAll('a, button, .image-card');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -37,7 +36,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================
-    // SISTEMA DE PARTÍCULAS
+    // 🌊 PARALLAX 3D DO CARROSSel COM O MOUSE
+    // O carrossel inteiro inclina conforme o cursor
+    // ============================================
+    const galleryContainer = document.getElementById('galleryContainer');
+    const rotatingImages = document.getElementById('rotatingImages');
+    let parallaxActive = true;
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+
+    // Listener de mouse na galeria para efeito parallax
+    document.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
+
+        const mouseX = (e.clientX / window.innerWidth) - 0.5;
+        const mouseY = (e.clientY / window.innerHeight) - 0.5;
+
+        // Limita a inclinação a ±15 graus para não distorcer demais
+        targetRotateY = mouseX * 15;
+        targetRotateX = -mouseY * 10;
+    });
+
+    // Animação suave do parallax com easing
+    function animateParallax() {
+        // Interpolação suave (lerp)
+        currentRotateX += (targetRotateX - currentRotateX) * 0.08;
+        currentRotateY += (targetRotateY - currentRotateY) * 0.08;
+
+        if (galleryContainer && parallaxActive) {
+            galleryContainer.style.transform =
+                `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+        }
+
+        requestAnimationFrame(animateParallax);
+    }
+    animateParallax();
+
+    // Pausa o parallax quando o mouse sai da janela
+    document.addEventListener('mouseleave', () => {
+        targetRotateX = 0;
+        targetRotateY = 0;
+    });
+
+    // ============================================
+    // 🎯 CONTROLE DE VELOCIDADE DO CARROSSEL
+    // ============================================
+    // Pausar rotação ao passar o mouse
+    rotatingImages.addEventListener('mouseenter', () => {
+        rotatingImages.style.animationPlayState = 'paused';
+    });
+
+    rotatingImages.addEventListener('mouseleave', () => {
+        rotatingImages.style.animationPlayState = 'running';
+    });
+
+    // ============================================
+    // 🖱️ EFEITO DE TILT 3D EM CADA CARD (HOVER)
+    // Cada card inclina conforme a posição do mouse DENTRO dele
+    // ============================================
+    const imageCards = document.querySelectorAll('.image-card');
+
+    imageCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -15;
+            const rotateY = ((x - centerX) / centerX) * 15;
+
+            card.style.transform = `
+                rotateY(calc(var(--i) * 51.43deg))
+                translateZ(500px)
+                scale(1.1)
+                rotateX(${rotateX}deg)
+                rotateY(${rotateY + (card.style.getPropertyValue('--i') * 51.43)}deg)
+            `;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+
+    // ============================================
+    // 🌌 SISTEMA DE PARTÍCULAS
     // ============================================
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
@@ -46,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = window.innerHeight;
 
     let particlesArray = [];
-    const numberOfParticles = 80; // Reduzido levemente para melhor performance em mobile
+    const numberOfParticles = 80;
 
     class Particle {
         constructor() {
@@ -99,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
             particlesArray[i].update();
             particlesArray[i].draw();
 
-            // Conectar partículas próximas
             for (let j = i; j < particlesArray.length; j++) {
                 const dx = particlesArray[i].x - particlesArray[j].x;
                 const dy = particlesArray[i].y - particlesArray[j].y;
@@ -122,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     animateParticles();
 
-    // Redimensionar canvas
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -130,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ============================================
-    // PLAYER DE MÚSICA
+    // 🎵 PLAYER DE MÚSICA
     // ============================================
     const audioPlayer = document.getElementById('audioPlayer');
     const playBtn = document.getElementById('playBtn');
@@ -141,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isPlaying = false;
 
-    // Play/Pause
     playBtn.addEventListener('click', togglePlay);
 
     function togglePlay() {
@@ -159,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlaying = !isPlaying;
     }
 
-    // Atualizar barra de progresso
     audioPlayer.addEventListener('timeupdate', () => {
         if (audioPlayer.duration) {
             const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
@@ -167,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Clique na barra de progresso
     progressBar.parentElement.addEventListener('click', (e) => {
         const width = e.target.parentElement.offsetWidth;
         const clickX = e.offsetX;
@@ -177,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Botões anterior/próxima (reiniciam a faixa, já que é loop de uma só)
     prevBtn.addEventListener('click', () => {
         audioPlayer.currentTime = 0;
         if (!isPlaying) togglePlay();
@@ -189,21 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ============================================
-    // CONTROLE DE VELOCIDADE DAS IMAGENS
-    // ============================================
-    const rotatingImages = document.querySelector('.rotating-images');
-
-    // Pausar rotação ao passar o mouse
-    rotatingImages.addEventListener('mouseenter', () => {
-        rotatingImages.style.animationPlayState = 'paused';
-    });
-
-    rotatingImages.addEventListener('mouseleave', () => {
-        rotatingImages.style.animationPlayState = 'running';
-    });
-
-    // ============================================
-    // EFEITO DE DIGITAÇÃO/GLITCH NO TÍTULO
+    // 🔤 EFEITO GLITCH NO TÍTULO
     // ============================================
     const glitchElement = document.querySelector('.glitch');
     const originalText = glitchElement.textContent;
@@ -230,11 +298,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     }
 
-    // Executar glitch a cada 6 segundos
     setInterval(glitchText, 6000);
 
     // ============================================
-    // EFEITO DE PARTÍCULA AO CLICAR
+    // 💥 PARTÍCULA AO CLICAR
     // ============================================
     document.addEventListener('click', (e) => {
         createClickParticle(e.clientX, e.clientY);
@@ -278,10 +345,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================
-    // CONSOLE MESSAGE (Easter Egg)
+    // 🎮 CONTROLES EXTRAS DO CARROSSEL (TECLADO)
+    // ============================================
+    let rotationSpeed = 30; // segundos por volta
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            rotationSpeed = Math.max(10, rotationSpeed - 5);
+            rotatingImages.style.animationDuration = rotationSpeed + 's';
+        } else if (e.key === 'ArrowRight') {
+            rotationSpeed = Math.min(60, rotationSpeed + 5);
+            rotatingImages.style.animationDuration = rotationSpeed + 's';
+        } else if (e.key === ' ') {
+            e.preventDefault();
+            const playState = rotatingImages.style.animationPlayState;
+            rotatingImages.style.animationPlayState = playState === 'paused' ? 'running' : 'paused';
+        }
+    });
+
+    // ============================================
+    // 🖱️ SCROLL PARA CONTROLAR ROTAÇÃO
+    // ============================================
+    let scrollAccumulator = 0;
+    let isScrollControlling = false;
+    let scrollTimeout;
+
+    galleryContainer.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        isScrollControlling = true;
+        rotatingImages.style.animationPlayState = 'paused';
+
+        scrollAccumulator += e.deltaY * 0.5;
+        rotatingImages.style.transform = `rotateY(${scrollAccumulator}deg)`;
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            isScrollControlling = false;
+            rotatingImages.style.animationPlayState = 'running';
+        }, 1500);
+    }, { passive: false });
+
+    // ============================================
+    // 🎯 CONSOLE MESSAGE (Easter Egg)
     // ============================================
     console.log('%c🔥 PAPEL-MOEDA 🔥', 'color: #ff003c; font-size: 24px; font-weight: bold;');
     console.log('%cEconomista Marxista | Pró-Irã', 'color: #00f0ff; font-size: 14px;');
     console.log('%c"A história de toda sociedade até aqui é a história da luta de classes" - Karl Marx', 'color: #ffd700; font-style: italic;');
+    console.log('%c💡 Dica: Use ← → para controlar a velocidade do carrossel, ESPAÇO para pausar, e SCROLL para girar manualmente!', 'color: #ffffff; font-size: 12px;');
 
 });

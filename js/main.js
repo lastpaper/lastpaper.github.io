@@ -1,5 +1,5 @@
 /* ============================================
-   PAPEL-MOEDA - INTERATIVIDADE (SEM GALERIA 3D)
+   PAPEL-MOEDA - INTERATIVIDADE
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,12 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cursor.style.top = e.clientY + 'px';
 
             setTimeout(() => {
-                cursorFollower.style.left = e.clientX - 10 + 'px';
-                cursorFollower.style.top = e.clientY - 10 + 'px';
+                cursorFollower.style.left = (e.clientX - 10) + 'px';
+                cursorFollower.style.top = (e.clientY - 10) + 'px';
             }, 100);
         });
 
-        const interactiveElements = document.querySelectorAll('a, button, .stat-box, .flag-item');
+        // Efeito de hover em elementos interativos
+        const interactiveElements = document.querySelectorAll('a, button, .image-card');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.transform = 'scale(2)';
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = window.innerHeight;
 
     let particlesArray = [];
-    const numberOfParticles = 100;
+    const numberOfParticles = 80; // Reduzido levemente para melhor performance em mobile
 
     class Particle {
         constructor() {
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             particlesArray[i].update();
             particlesArray[i].draw();
 
+            // Conectar partículas próximas
             for (let j = i; j < particlesArray.length; j++) {
                 const dx = particlesArray[i].x - particlesArray[j].x;
                 const dy = particlesArray[i].y - particlesArray[j].y;
@@ -120,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     animateParticles();
 
+    // Redimensionar canvas
     window.addEventListener('resize', () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -138,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isPlaying = false;
 
+    // Play/Pause
     playBtn.addEventListener('click', togglePlay);
 
     function togglePlay() {
@@ -146,65 +150,60 @@ document.addEventListener('DOMContentLoaded', () => {
             playBtn.innerHTML = '<i class="fas fa-play"></i>';
             bars.forEach(bar => bar.style.animationPlayState = 'paused');
         } else {
-            audioPlayer.play();
+            audioPlayer.play().catch(error => {
+                console.log("Interação do usuário necessária para reproduzir áudio.");
+            });
             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
             bars.forEach(bar => bar.style.animationPlayState = 'running');
         }
         isPlaying = !isPlaying;
     }
 
+    // Atualizar barra de progresso
     audioPlayer.addEventListener('timeupdate', () => {
-        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-        progressBar.style.width = progress + '%';
+        if (audioPlayer.duration) {
+            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressBar.style.width = progress + '%';
+        }
     });
 
+    // Clique na barra de progresso
     progressBar.parentElement.addEventListener('click', (e) => {
         const width = e.target.parentElement.offsetWidth;
         const clickX = e.offsetX;
         const duration = audioPlayer.duration;
-        audioPlayer.currentTime = (clickX / width) * duration;
+        if (duration) {
+            audioPlayer.currentTime = (clickX / width) * duration;
+        }
     });
 
+    // Botões anterior/próxima (reiniciam a faixa, já que é loop de uma só)
     prevBtn.addEventListener('click', () => {
         audioPlayer.currentTime = 0;
-        if (!isPlaying) {
-            togglePlay();
-        }
+        if (!isPlaying) togglePlay();
     });
 
     nextBtn.addEventListener('click', () => {
         audioPlayer.currentTime = 0;
-        if (!isPlaying) {
-            togglePlay();
-        }
+        if (!isPlaying) togglePlay();
     });
 
     // ============================================
-    // ANIMAÇÃO DE ENTRADA AO SCROLL
+    // CONTROLE DE VELOCIDADE DAS IMAGENS
     // ============================================
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
+    const rotatingImages = document.querySelector('.rotating-images');
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
+    // Pausar rotação ao passar o mouse
+    rotatingImages.addEventListener('mouseenter', () => {
+        rotatingImages.style.animationPlayState = 'paused';
+    });
 
-    document.querySelectorAll('.info-card, .music-player, .social-container').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease-out';
-        observer.observe(el);
+    rotatingImages.addEventListener('mouseleave', () => {
+        rotatingImages.style.animationPlayState = 'running';
     });
 
     // ============================================
-    // EFEITO DE DIGITAÇÃO GLITCH NO TÍTULO
+    // EFEITO DE DIGITAÇÃO/GLITCH NO TÍTULO
     // ============================================
     const glitchElement = document.querySelector('.glitch');
     const originalText = glitchElement.textContent;
@@ -231,10 +230,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     }
 
-    setInterval(glitchText, 5000);
+    // Executar glitch a cada 6 segundos
+    setInterval(glitchText, 6000);
 
     // ============================================
-    // PARTÍCULAS AO CLICAR
+    // EFEITO DE PARTÍCULA AO CLICAR
     // ============================================
     document.addEventListener('click', (e) => {
         createClickParticle(e.clientX, e.clientY);
@@ -252,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         particle.style.pointerEvents = 'none';
         particle.style.zIndex = '9999';
         particle.style.boxShadow = '0 0 20px var(--color-primary)';
+        particle.style.transform = 'translate(-50%, -50%)';
 
         document.body.appendChild(particle);
 
@@ -259,13 +260,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let size = 10;
 
         const animate = () => {
-            opacity -= 0.02;
-            size += 2;
+            opacity -= 0.03;
+            size += 3;
 
             particle.style.opacity = opacity;
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
-            particle.style.transform = `translate(-${size/2}px, -${size/2}px)`;
 
             if (opacity > 0) {
                 requestAnimationFrame(animate);
@@ -278,10 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ============================================
-    // CONSOLE MESSAGE
+    // CONSOLE MESSAGE (Easter Egg)
     // ============================================
     console.log('%c🔥 PAPEL-MOEDA 🔥', 'color: #ff003c; font-size: 24px; font-weight: bold;');
     console.log('%cEconomista Marxista | Pró-Irã', 'color: #00f0ff; font-size: 14px;');
-    console.log('%c"A história de toda sociedade até aqui é a história da luta de classes"', 'color: #ffd700; font-style: italic;');
+    console.log('%c"A história de toda sociedade até aqui é a história da luta de classes" - Karl Marx', 'color: #ffd700; font-style: italic;');
 
 });

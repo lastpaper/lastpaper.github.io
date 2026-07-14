@@ -38,6 +38,76 @@
             <div class="divider"></div>
         </header>
 
+        <!-- Galeria de imagens 3D giratórias (Ajustada para 7 imagens) -->
+        <section class="gallery-section">
+            <div class="gallery-container">
+                <div class="rotating-images">
+                    <!-- Imagem 1 -->
+                    <div class="image-card card-1" style="--i: 1;">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-1.jpg" alt="Perfil 1" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Imagem 2 -->
+                    <div class="image-card card-2" style="--i: 2;">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-2.jpg" alt="Perfil 2" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Imagem 3 -->
+                    <div class="image-card card-3" style="--i: 3;">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-3.jpg" alt="Perfil 3" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Imagem 4 -->
+                    <div class="image-card card-4" style="--i: 4;">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-4.jpg" alt="Perfil 4" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Imagem 5 -->
+                    <div class="image-card card-5" style="--i: 5;">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-5.jpg" alt="Perfil 5" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Imagem 6 -->
+                    <div class="image-card card-6" style="--i: 6;">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-6.jpg" alt="Perfil 6" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+
+                    <!-- Imagem 7 -->
+                    <div class="image-card card-7" style="--i: 7;">
+                        <div class="image-wrapper">
+                            <img src="assets/images/perfil-7.jpg" alt="Perfil 7" class="profile-img">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="card-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Seção de informações -->
         <section class="info-section">
             <div class="info-card">
@@ -101,7 +171,7 @@
                 </div>
 
                 <div class="music-controls">
-                    <button class="control-btn" id="prevBtn" title="Anterior">
+                    <button class="control-btn" id="prevBtn" title="Reiniciar">
                         <i class="fas fa-step-backward"></i>
                     </button>
 
@@ -109,7 +179,7 @@
                         <i class="fas fa-play"></i>
                     </button>
 
-                    <button class="control-btn" id="nextBtn" title="Próxima">
+                    <button class="control-btn" id="nextBtn" title="Reiniciar">
                         <i class="fas fa-step-forward"></i>
                     </button>
                 </div>
@@ -121,11 +191,15 @@
                     </div>
                 </div>
 
+                <!-- Caminho corrigido conforme sua estrutura de pastas -->
                 <audio id="audioPlayer" loop>
                     <source src="music/background.mp3" type="audio/mpeg">
                     Seu navegador não suporta o elemento de áudio.
                 </audio>
             </div>
+            <p style="text-align: center; color: var(--color-text-muted); font-size: 0.8rem; margin-top: 1rem;">
+                <i class="fas fa-volume-up"></i> Clique no play para ativar a trilha sonora
+            </p>
         </section>
 
         <!-- Redes sociais -->
@@ -135,7 +209,7 @@
                     <i class="fab fa-discord"></i>
                     <div class="social-glow"></div>
                 </a>
-                <a href="#" class="social-link" data-tooltip="Twitter">
+                <a href="#" class="social-link" data-tooltip="Twitter / X">
                     <i class="fab fa-twitter"></i>
                     <div class="social-glow"></div>
                 </a>
@@ -147,7 +221,7 @@
                     <i class="fab fa-telegram"></i>
                     <div class="social-glow"></div>
                 </a>
-                <a href="#" class="social-link" data-tooltip="Email">
+                <a href="mailto:seuemail@exemplo.com" class="social-link" data-tooltip="Email">
                     <i class="fas fa-envelope"></i>
                     <div class="social-glow"></div>
                 </a>

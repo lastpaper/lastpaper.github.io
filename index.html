@@ -3,56 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paper | Links</title>
+    <title>PAPER | Universo Digital</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="container">
-        <!-- CARROSSEL 3D GIRATÓRIO -->
-        <div class="scene">
-            <div class="carousel">
-                <!-- Substitua os 'src' pelas suas imagens reais na pasta assets/images/ -->
-                <div class="carousel__cell"><img src="assets/images/perfil-1.jpg" alt="Perfil 1"></div>
-                <div class="carousel__cell"><img src="assets/images/perfil-2.jpg" alt="Perfil 2"></div>
-                <div class="carousel__cell"><img src="assets/images/perfil-3.jpg" alt="Perfil 3"></div>
-                <div class="carousel__cell"><img src="assets/images/perfil-4.jpg" alt="Perfil 4"></div>
-                <div class="carousel__cell"><img src="assets/images/perfil-5.jpg" alt="Perfil 5"></div>
-                <div class="carousel__cell"><img src="assets/images/perfil-6.jpg" alt="Perfil 6"></div>
-                <div class="carousel__cell"><img src="assets/images/perfil-7.jpg" alt="Perfil 7"></div>
-                <div class="carousel__cell"><img src="assets/images/perfil-8.jpg" alt="Perfil 8"></div>
+    <!-- Canvas para partículas interativas -->
+    <canvas id="galaxy-canvas"></canvas>
 
-                <!-- NOME NO CENTRO -->
-                <div class="center-name">PAPER</div>
+    <!-- Overlay de vinheta -->
+    <div class="vignette"></div>
+
+    <!-- Container principal -->
+    <div class="main-container">
+
+        <!-- Título principal estilo retrô -->
+        <header class="header">
+            <h1 class="main-title">PAPER</h1>
+            <p class="subtitle">Universo Digital</p>
+            <div class="divider"></div>
+        </header>
+
+        <!-- Carrossel 3D com 6 fotos -->
+        <section class="carousel-section">
+            <div class="scene">
+                <div class="carousel">
+                    <div class="carousel__cell">
+                        <img src="assets/images/perfil-1.jpg" alt="Perfil 1">
+                        <div class="cell-glow"></div>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="assets/images/perfil-2.jpg" alt="Perfil 2">
+                        <div class="cell-glow"></div>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="assets/images/perfil-3.jpg" alt="Perfil 3">
+                        <div class="cell-glow"></div>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="assets/images/perfil-4.jpg" alt="Perfil 4">
+                        <div class="cell-glow"></div>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="assets/images/perfil-5.jpg" alt="Perfil 5">
+                        <div class="cell-glow"></div>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="assets/images/perfil-6.jpg" alt="Perfil 6">
+                        <div class="cell-glow"></div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- DESCRIÇÃO -->
-        <div class="description">
-            <h2>Estudante de Ciências Econômicas</h2>
-            <p>Marxista. Anti-imperialista. Construindo conhecimento crítico sobre a realidade material e as lutas de classe.</p>
-        </div>
+        <!-- Descrição -->
+        <section class="description-section">
+            <h2 class="section-title">Sobre Mim</h2>
+            <p class="description-text">
+                Explorador do cosmos digital. Estudante de Ciências Econômicas,
+                pensador crítico e construtor de realidades. Cada ponto de luz
+                neste universo representa uma ideia, uma luta, uma revolução.
+            </p>
+        </section>
 
-        <!-- LINKS ESTILO LINKTREE -->
-        <div class="links">
-            <a href="https://github.com/lastpaper" class="link-btn" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://twitter.com/seu_usuario" class="link-btn" target="_blank">
-                <i class="fab fa-twitter"></i> Twitter / X
-            </a>
-            <a href="https://t.me/seu_usuario" class="link-btn" target="_blank">
-                <i class="fab fa-telegram"></i> Telegram
-            </a>
-            <a href="mailto:seu@email.com" class="link-btn">
-                <i class="fas fa-envelope"></i> E-mail
-            </a>
-        </div>
+        <!-- Links de redes sociais -->
+        <section class="social-section">
+            <h2 class="section-title">Conecte-se</h2>
+            <div class="social-links">
+                <a href="https://github.com/lastpaper" class="social-link" target="_blank" data-tooltip="GitHub">
+                    <i class="fab fa-github"></i>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="https://twitter.com/seu_usuario" class="social-link" target="_blank" data-tooltip="Twitter">
+                    <i class="fab fa-twitter"></i>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="https://t.me/seu_usuario" class="social-link" target="_blank" data-tooltip="Telegram">
+                    <i class="fab fa-telegram"></i>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="https://instagram.com/seu_usuario" class="social-link" target="_blank" data-tooltip="Instagram">
+                    <i class="fab fa-instagram"></i>
+                    <div class="link-glow"></div>
+                </a>
+                <a href="mailto:seu@email.com" class="social-link" data-tooltip="Email">
+                    <i class="fas fa-envelope"></i>
+                    <div class="link-glow"></div>
+                </a>
+            </div>
+        </section>
 
-        <footer>
-            <p>© 2026 Paper</p>
+        <!-- Player de música -->
+        <section class="music-section">
+            <div class="music-player">
+                <div class="music-visualizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+
+                <div class="music-controls">
+                    <button class="control-btn" id="playBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+
+                <div class="music-info">
+                    <span class="music-title">Cosmic Journey</span>
+                    <div class="progress-bar">
+                        <div class="progress" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <audio id="audioPlayer" loop>
+                    <source src="assets/music/background.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-quote">"O universo não é apenas o que vemos, mas o que imaginamos"</p>
+            <p class="footer-text">© 2026 PAPER</p>
         </footer>
+
     </div>
 
     <script src="script.js"></script>

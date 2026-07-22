@@ -660,3 +660,86 @@ body {
     background: var(--color-primary);
     color: var(--color-text-primary);
 }
+
+
+/* ============================================
+   BOTÃO DISCORD (DESTAQUE)
+   ============================================ */
+.social-link.discord-btn {
+    width: auto;
+    height: 56px;
+    padding: 0 2rem 0 1.5rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #5865F2, #4752C4);
+    border: none;
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+    color: #fff;
+    font-family: var(--font-tech);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link.discord-btn i {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.social-link.discord-btn span {
+    margin-top: 2px;
+}
+
+.social-link.discord-btn:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 8px 35px rgba(88, 101, 242, 0.6);
+    background: linear-gradient(135deg, #6C7AFF, #5865F2);
+}
+
+.social-link.discord-btn .social-glow {
+    display: none; /* o botão já tem brilho próprio */
+}
+
+/* Ajuste responsivo */
+@media (max-width: 600px) {
+    .social-link.discord-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0 1.5rem;
+        font-size: 1rem;
+        height: 50px;
+    }
+    .social-link.discord-btn i {
+        font-size: 1.5rem;
+    }
+}
+
+/* Para manter os outros ícones circulares e menores */
+.social-link:not(.discord-btn) {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-primary);
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0;
+}
+
+.social-link:not(.discord-btn):hover {
+    transform: translateY(-8px) scale(1.05);
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+}

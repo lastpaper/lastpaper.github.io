@@ -1,113 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Perfil de Papel-Moeda - Economista Marxista">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Perfil de Papel-Moeda - Economista Marxista" />
     <title>paper</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <!-- Canvas para partículas -->
+
+    <!-- Canvas para partículas (mais sutil) -->
     <canvas id="particles-canvas"></canvas>
-
-    <!-- Efeito de scanline -->
-    <div class="scanlines"></div>
-
-    <!-- Overlay de vinheta -->
-    <div class="vignette"></div>
 
     <!-- Container principal -->
     <div class="main-container">
 
-        <!-- Header com título glitch -->
+        <!-- Header: título com gradiente -->
         <header class="header">
-            <div class="glitch-wrapper">
-                <h1 class="gradient-title">paper</h1>
-            </div>
+            <h1 class="gradient-title">paper</h1>
             <div class="divider"></div>
         </header>
 
-        <!-- Galeria de imagens 3D giratórias (Ajustada para 7 imagens) -->
-        <section class="gallery-section">
-            <div class="gallery-container" id="galleryContainer">
-                <div class="rotating-images" id="rotatingImages">
-                    <!-- Imagem 1 -->
-                    <div class="image-card card-1" style="--i: 1;">
-                        <div class="image-wrapper">
-                            <img src="assets/images/perfil-1.jpg" alt="Perfil 1" class="profile-img">
-                            <div class="image-overlay"></div>
-                        </div>
-                        <div class="card-glow"></div>
-                    </div>
-
-                    <!-- Imagem 2 -->
-                    <div class="image-card card-2" style="--i: 2;">
-                        <div class="image-wrapper">
-                            <img src="assets/images/perfil-2.jpg" alt="Perfil 2" class="profile-img">
-                            <div class="image-overlay"></div>
-                        </div>
-                        <div class="card-glow"></div>
-                    </div>
-
-                    <!-- Imagem 3 -->
-                    <div class="image-card card-3" style="--i: 3;">
-                        <div class="image-wrapper">
-                            <img src="assets/images/perfil-3.jpg" alt="Perfil 3" class="profile-img">
-                            <div class="image-overlay"></div>
-                        </div>
-                        <div class="card-glow"></div>
-                    </div>
-
-                    <!-- Imagem 4 -->
-                    <div class="image-card card-4" style="--i: 4;">
-                        <div class="image-wrapper">
-                            <img src="assets/images/perfil-4.jpg" alt="Perfil 4" class="profile-img">
-                            <div class="image-overlay"></div>
-                        </div>
-                        <div class="card-glow"></div>
-                    </div>
-
-                    <!-- Imagem 5 -->
-                    <div class="image-card card-5" style="--i: 5;">
-                        <div class="image-wrapper">
-                            <img src="assets/images/perfil-5.jpg" alt="Perfil 5" class="profile-img">
-                            <div class="image-overlay"></div>
-                        </div>
-                        <div class="card-glow"></div>
-                    </div>
-
-                    <!-- Imagem 6 -->
-                    <div class="image-card card-6" style="--i: 6;">
-                        <div class="image-wrapper">
-                            <img src="assets/images/perfil-6.jpg" alt="Perfil 6" class="profile-img">
-                            <div class="image-overlay"></div>
-                        </div>
-                        <div class="card-glow"></div>
-                    </div>
-
-                    <!-- Imagem 7 -->
-                    <div class="image-card card-7" style="--i: 7;">
-                        <div class="image-wrapper">
-                            <img src="assets/images/perfil-7.jpg" alt="Perfil 7" class="profile-img">
-                            <div class="image-overlay"></div>
-                        </div>
-                        <div class="card-glow"></div>
-                    </div>
-                </div>
+        <!-- Imagem de perfil (única, estilo clean) -->
+        <section class="profile-section">
+            <div class="profile-avatar">
+                <img src="assets/images/perfil-4.jpg" alt="Foto de perfil" />
+                <div class="avatar-glow"></div>
             </div>
         </section>
 
-        <!-- Seção de informações -->
+        <!-- Seção Sobre (cards) -->
         <section class="info-section">
             <div class="info-card">
                 <div class="info-header">
@@ -117,39 +49,44 @@
 
                 <div class="info-content">
                     <p class="info-text">
-                        Estudante de <span class="highlight">Ciências Econômicas</span>, fã de <span class="highlight">Econometria</span> e.
+                        Estudante de <span class="highlight">Ciências Econômicas</span>, fã de <span class="highlight">Econometria</span> e
                         atualmente pesquisando sobre <span class="highlight">Análise de Insumo-Produto</span>.
-                        Usuário de <span class="highlight">Linux</span> e da linguagem de programação
-                        <span class="highlight">R</span>.
+                        Usuário de <span class="highlight">Linux</span> e da linguagem <span class="highlight">R</span>.
                         Este perfil apoia o <span class="highlight">Flamengo</span>, o <span class="highlight">Hezbollah</span>,
-                        o <span class="highlight">Hamas</span>, a <span class="highlight">Irã</span>,
-                        a recuperação do <span class="highlight">Pirulla</span> e do nosso mano <span class="highlight">Oruam</span>
-
+                        o <span class="highlight">Hamas</span>, o <span class="highlight">Irã</span>,
+                        a recuperação do <span class="highlight">Pirulla</span> e do nosso mano <span class="highlight">Oruam</span>.
                     </p>
 
-                    <div class="flags-container">
-                        <div class="flag-item">
+                    <!-- Grid de tópicos (ícones + texto) -->
+                    <div class="info-grid">
+                        <div class="info-item">
                             <i class="fas fa-hammer"></i>
-                            <span>Marxismo</span>
+                            <h3>Marxismo</h3>
+                            <p>Análise crítica e luta de classes</p>
                         </div>
-                        <div class="flag-item">
+                        <div class="info-item">
                             <i class="fas fa-globe-americas"></i>
-                            <span>Anti-imperialismo</span>
+                            <h3>Anti-imperialismo</h3>
+                            <p>Solidariedade internacional</p>
                         </div>
-                        <div class="flag-item iran-flag">
+                        <div class="info-item iran">
                             <i class="fas fa-mosque"></i>
-                            <span>Pró-Irã</span>
+                            <h3>Pró-Irã</h3>
+                            <p>Resistência e soberania</p>
                         </div>
-                        <div class="flag-item palestine-flag">
+                        <div class="info-item palestine">
                             <i class="fas fa-dove"></i>
-                            <span>Palestina Livre</span>
+                            <h3>Palestina Livre</h3>
+                            <p>Justiça e autodeterminação</p>
                         </div>
-                        <div class="flag-item tech-flag">
+                        <div class="info-item tech">
                             <i class="fab fa-r-project"></i>
-                            <span>Data Science (R)</span>
+                            <h3>Data Science (R)</h3>
+                            <p>Tidyverse, análise de dados</p>
                         </div>
                     </div>
 
+                    <!-- Estatísticas / destaques -->
                     <div class="stats-container">
                         <div class="stat-box">
                             <i class="fas fa-project-diagram"></i>
@@ -170,69 +107,75 @@
                 </div>
             </div>
         </section>
-        <!-- Player de música -->
+
+        <!-- Player de música (compacto) -->
         <section class="music-section">
             <div class="music-player">
-                <div class="music-visualizer">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-
                 <div class="music-controls">
                     <button class="control-btn" id="prevBtn" title="Reiniciar">
                         <i class="fas fa-step-backward"></i>
                     </button>
-
                     <button class="control-btn play-btn" id="playBtn" title="Play/Pause">
                         <i class="fas fa-play"></i>
                     </button>
-
                     <button class="control-btn" id="nextBtn" title="Reiniciar">
                         <i class="fas fa-step-forward"></i>
                     </button>
                 </div>
-
                 <div class="music-info">
                     <span class="music-title">Background Music</span>
                     <div class="progress-bar">
                         <div class="progress" id="progressBar"></div>
                     </div>
                 </div>
-
-                <!-- Caminho corrigido conforme sua estrutura de pastas -->
                 <audio id="audioPlayer" loop>
-                    <source src="music/background.mp3" type="audio/mpeg">
-                    Seu navegador não suporta o elemento de áudio.
+                    <source src="music/background.mp3" type="audio/mpeg" />
+                    Seu navegador não suporta áudio.
                 </audio>
             </div>
-            <p style="text-align: center; color: var(--color-text-muted); font-size: 0.8rem; margin-top: 1rem;">
-                <i class="fas fa-volume-up"></i> Clique no play para ativar a trilha sonora
+            <p class="music-hint">
+                <i class="fas fa-volume-up"></i> Clique no play para ativar a trilha
             </p>
         </section>
 
-        <!-- Redes sociais -->
+        <!-- Links sociais (expansível) -->
         <section class="social-section">
             <div class="social-container">
                 <a href="https://discord.gg/k5E6pgbHf" class="social-link" data-tooltip="Discord">
                     <i class="fab fa-discord"></i>
                     <div class="social-glow"></div>
                 </a>
-                <a href="https://anovademocracia.com.br/" class="social-link" data-tooltip="Email">
+                <a href="https://anovademocracia.com.br/" class="social-link" data-tooltip="Nova Democracia">
                     <i class="fas fa-bullhorn"></i>
                     <div class="social-glow"></div>
+                </a>
+                <a href="https://papelmoeda.medium.com/" class="social-link" data-tooltip="Medium">
+                  <i class="fab fa-medium"></i>
+                  <div class="social-glow"></div>
                 </a>
             </div>
         </section>
 
+        <!-- Rodapé -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-quote">
+                    "A história de toda sociedade até aqui é a história da luta de classes"
+                </p>
+                <p class="footer-author">— Karl Marx</p>
+                <p class="footer-text">
+                    &copy; 2025 Papel-Moeda • Feito com <i class="fas fa-heart" style="color: var(--color-primary);"></i>
+                </p>
+            </div>
+        </footer>
 
+    </div>
 
-    <!-- Efeito de cursor personalizado -->
+    <!-- Efeito de cursor personalizado (opcional) -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
+    <!-- Scripts -->
     <script src="js/main.js"></script>
 </body>
 </html>
